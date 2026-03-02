@@ -3,34 +3,40 @@
 
 <head>
   <title>Theofilos Tsantilas | Ph.D. student in Mathematics</title>
-  <link rel="icon" type="image/x-icon" href="images/favicon.png">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.png">
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
 
-  <link rel="stylesheet" href="assets/css/maincss.css">
-  <link rel="stylesheet" href="assets/css/headercss.css">
-  <link rel="stylesheet" href="assets/css/sidecss.css">
-  <link rel="stylesheet" href="assets/css/footercss.css">
-  <link rel="stylesheet" href="assets/css/componentscss.css">
+  <link rel="stylesheet" href="/assets/css/maincss.css">
+  <link rel="stylesheet" href="/assets/css/headercss.css">
+  <link rel="stylesheet" href="/assets/css/sidecss.css">
+  <link rel="stylesheet" href="/assets/css/footercss.css">
+  <link rel="stylesheet" href="/assets/css/componentscss.css">
+  <link rel="stylesheet" href="/assets/webawesome/styles/webawesome.css">
+  <link rel="stylesheet" href="/assets/webawesome/styles/themes/awesome.css">
+  
 
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <script src="https://kit.webawesome.com/79483c544f9e439c.js" crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/f7c78df8df.js" crossorigin="anonymous"></script>
+  <script type="module">
+    import { setBasePath } from '/assets/webawesome/utilities/base-path.js';
+    setBasePath('/assets/webawesome/');
+  </script>
+  <script type="module" src="/assets/webawesome/webawesome.loader.js"></script>
 </head>
 
 
-<body>
+<body class="wa-theme-awesome">
 
-  <wa-include src="header.html"></wa-include>
+  <wa-include src="/partials/header.html"></wa-include>
 
   <div class="row">
     <div class="maincolumn">
       <h3> Welcome! </h3>
-      <p> Welcome to my personal page! Here you can find <a href="personal.html" id="Life & Times">information about
-          me and my research</a>, <a href="links.html" id="Interesting!">links</a> to interesting pages about
+      <p> Welcome to my personal page! Here you can find <a href="/pages/personal.html" id="Life & Times">information about
+          me and my research</a>, <a href="/pages/links.html" id="Interesting!">links</a> to interesting pages about
         Mathematics and other things related (or not) to Mathematics that I find interesting. You can find out how to reach me <a
-          href="contact.html" id="Hello there!">here</a>.</p>
+          href="/pages/contact.html" id="Hello there!">here</a>.</p>
       <p style="font-size:10pt;">
         * Dates are dd/mm/yy.<br>
         ** The site may not function properly if javascript blockers are enabled.
@@ -41,11 +47,11 @@
       <wa-tooltip for="Hello there!" style="text-align: justify;">Hello there!</wa-tooltip>
 
     </div>
-    <wa-include src="sidebar.html"></wa-include>
+    <wa-include src="partials/sidebar.html"></wa-include>
   </div>
 
 
-  <wa-include src="footer.html"></wa-include>
+  <wa-include src="partials/footer.html"></wa-include>
 
 </body>
 

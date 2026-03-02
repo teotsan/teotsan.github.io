@@ -13,16 +13,6 @@ footer {
 #social .spaced-header {
     margin-bottom: 20px;
 }
-
-#social i {
-    transition: transform 0.1s ease;
-    scale: 160%; 
-    margin-right: 20px; 
-}
-
-#social i:hover {
-    transform: scale(1.4);
-}
   
 #social img {
     transition: transform 0.1s ease;
@@ -35,6 +25,10 @@ footer {
 
 #social img:hover {
     transform: scale(1.6);
+}
+
+#gitlab {
+    color: #e24329;
 }
 
 #github {
