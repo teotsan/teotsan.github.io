@@ -47,6 +47,15 @@ footer {
     color: #4285f4;
 }
 
+#researchgate {
+    color: rgb(99, 230, 190);
+    font-size: 1.1em;
+}
+
+#orcid {
+    color: #a6ce39;
+}
+
 .social-buttons {
     text-align: center;
 }
