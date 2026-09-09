@@ -1,11 +1,10 @@
 # Card
 
-**Full documentation:** https://webawesome.com/docs/components/card
+`<wa-card>`
 
+Stable [Layout](https://webawesome.com/docs/components/?category=layout) [Since 2.0](https://webawesome.com/docs/resources/changelog#wa_200)
 
-`<wa-card>` Since 2.0 stable
-
-Cards can be used to group related subjects in a container.
+Cards group related content and actions inside a bordered container. Use them to present products, articles, user profiles, or any self-contained unit of information.
 
 ```html
 <wa-card class="card-overview">
@@ -30,11 +29,111 @@ Cards can be used to group related subjects in a container.
 </style>
 ```
 
+```html
+<wa-card>
+  <img
+    slot="media"
+    src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
+    alt="A kitten between a terracotta pot and decorative grasses."
+  />
+  <strong slot="header">Mittens</strong>
+  This kitten is as cute as he is playful. Bring him home today!
+  <wa-button slot="footer" variant="brand" pill>More Info</wa-button>
+  <wa-button slot="actions" variant="neutral" appearance="plain">
+    <wa-icon name="ellipsis" label="Actions"></wa-icon>
+  </wa-button>
+</wa-card>
+```
+
+## API
+
+### Importing
+
+If you're using the autoloader or a hosted project, components load on demand — no manual import needed. To cherry-pick a component manually, use one of the following snippets.
+
+\*\*CDN\*\*
+
+Import this component directly from the CDN:
+
+```js
+import 'https://ka-f.webawesome.com/webawesome@3.12.0/components/card/card.js';
+```
+
+\*\*npm\*\*
+
+After installing Web Awesome via npm, import this component:
+
+```js
+import '@awesome.me/webawesome/dist/components/card/card.js';
+```
+
+\*\*Self-Hosted\*\*
+
+If you're self-hosting Web Awesome, import this component from your server:
+
+```js
+import './webawesome/dist/components/card/card.js';
+```
+
+\*\*React\*\*
+
+To import this component for React 18 or below, use the following code:
+
+```js
+import WaCard from '@awesome.me/webawesome/dist/react/card/index.js';
+```
+
+### Slots
+
+| Name | Description |
+| --- | --- |
+| (default) | The card's main content. |
+| \`actions\` | An optional actions section to render at the end for the horizontal card. |
+| \`footer\` | An optional footer for the card. |
+| \`footer-actions\` | An optional actions section to render in the footer of the vertical card. |
+| \`header\` | An optional header for the card. |
+| \`header-actions\` | An optional actions section to render in the header of the vertical card. |
+| \`media\` | An optional media section to render at the start of the card. |
+
+### Attributes & Properties
+
+| Name | Description | Reflects |
+| --- | --- | --- |
+| \`appearance\` appearance | \`'accent' \\| 'filled' \\| 'outlined' \\| 'filled-outlined' \\| 'plain'\` The card's visual appearance. Type Default 'outlined' | |
+| \`orientation\` orientation | \`'horizontal' \\| 'vertical'\` Renders the card's orientation \* Type Default 'vertical' | |
+| \`withFooter\` with-footer | \`true\` Only required for SSR. Set to if you're slotting in a footer element so the server-rendered markup includes the footer before the component hydrates on the client. Type boolean Default false | |
+| \`withFooterActions\` with-footer-actions | \`true\` Only required for SSR. Set to if you're slotting in a footer-actions element so the server-rendered markup includes the media before the component hydrates on the client. Type boolean Default false | |
+| \`withHeader\` with-header | \`true\` Only required for SSR. Set to if you're slotting in a header element so the server-rendered markup includes the header before the component hydrates on the client. Type boolean Default false | |
+| \`withHeaderActions\` with-header-actions | \`true\` Only required for SSR. Set to if you're slotting in a header-actions element so the server-rendered markup includes the media before the component hydrates on the client. Type boolean Default false | |
+| \`withMedia\` with-media | \`true\` Only required for SSR. Set to if you're slotting in a media element so the server-rendered markup includes the media before the component hydrates on the client. Type boolean Default false | |
+
+### CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| \`--spacing\` | \`var(--wa-space-l)\` The amount of space around and between sections of the card. Expects a single value. Default |
+
+### CSS Parts
+
+| Name | Description | CSS selector |
+| --- | --- | --- |
+| \`actions\` | The container that wraps the card's actions. | \`::part(actions)\` |
+| \`body\` | The container that wraps the card's main content. | \`::part(body)\` |
+| \`footer\` | The container that wraps the card's footer. | \`::part(footer)\` |
+| \`header\` | The container that wraps the card's header. | \`::part(header)\` |
+| \`media\` | The container that wraps the card's media. | \`::part(media)\` |
+
+### SSR
+
+Learn more about [Server-Side Rendering (SSR)](https://webawesome.com/docs/ssr).
+
+If you use the header, media, or footer slots, set the matching `with-header`, `with-media`, or `with-footer` attribute — otherwise only the card's body will render during SSR. This works around the lack of a `:has-slotted` CSS pseudo-class, which would normally let us style borders based on slotted content.
+
 ## Examples
 
 ### Basic Card
 
-Basic cards aren't very exciting, but they can display any content you want them to.
+A card can hold any content. Media, a header, and a footer are all optional.
 
 ```html
 <wa-card class="card-basic">
@@ -48,7 +147,7 @@ Basic cards aren't very exciting, but they can display any content you want them
 </style>
 ```
 
-### Card with Header
+### Header
 
 Headers can be used to display titles and more. If using SSR, you need to also use the `with-header` attribute to add a header to the card (if not, it is added automatically).
 
@@ -72,7 +171,7 @@ Headers can be used to display titles and more. If using SSR, you need to also u
 </style>
 ```
 
-### Card with Footer
+### Footer
 
 Footers can be used to display actions, summaries, or other relevant content. If using SSR, you need to also use the `with-footer` attribute to add a footer to the card (if not, it is added automatically).
 
@@ -105,7 +204,7 @@ Card media is displayed atop the card and will stretch to fit. If using SSR, you
         alt="A kitten walks towards camera on top of pallet."
       />
     </div>
-    This card has an image of a kitten walking along a pallet. 
+    This card has an image of a kitten walking along a pallet.
   </wa-card>
   <wa-card class="card-media">
     <video slot="media" controls>
@@ -173,7 +272,7 @@ Use the `appearance` attribute to change the card's visual appearance.
 
 Set the `orientation` attribute to `horizontal` to create a card with a horizontal, side-by-side layout. Make sure to set a width or maximum width for the media slot. Horizontal cards do not currently contain the header and footer slots.
 
-The `actions` slot is only available for the horizontal orientation
+The `actions` slot is only available for the horizontal orientation.
 
 ```html
 <div class="wa-grid">
@@ -198,75 +297,3 @@ The `actions` slot is only available for the horizontal orientation
   }
 </style>
 ```
-
-## Importing
-
-Autoloading components via [projects](https://webawesome.com/docs/#using-a-project) is the recommended way to import components. If you prefer to do it manually, use one of the following code snippets.
-
-\*\*CDN\*\*
-
-Let your project code do the work! [Sign up for free](https://webawesome.com/signup) to use a project with your very own CDN — it's the fastest and easiest way to use Web Awesome.
-
-\*\*npm\*\*
-
-To manually import this component from NPM, use the following code.
-
-```js
-import '@awesome.me/webawesome/dist/components/card/card.js';
-```
-
-\*\*React\*\*
-
-To manually import this component from React, use the following code.
-
-```js
-import WaCard from '@awesome.me/webawesome/dist/react/card';
-```
-
-## Slots
-
-Learn more about [using slots](https://webawesome.com/docs/usage/#slots).
-
-| Name | Description |
-| --- | --- |
-| (default) | The card's main content. |
-| \`actions\` | An optional actions section to render at the end for the horizontal card. |
-| \`footer\` | An optional footer for the card. |
-| \`footer-actions\` | An optional actions section to render in the footer of the vertical card. |
-| \`header\` | An optional header for the card. |
-| \`header-actions\` | An optional actions section to render in the header of the vertical card. |
-| \`media\` | An optional media section to render at the start of the card. |
-
-## Attributes & Properties
-
-Learn more about [attributes and properties](https://webawesome.com/docs/usage/#attributes-and-properties).
-
-| Name | Description | Reflects |
-| --- | --- | --- |
-| \`appearance\` appearance | \`'accent' \\| 'filled' \\| 'outlined' \\| 'filled-outlined' \\| 'plain'\` The card's visual appearance. Type Default 'outlined' | | |
-| \`css\` | \`CSSResultGroup \\| undefined\` One or more CSSResultGroup to include in the component's shadow root. Host styles are automatically prepended. Type Default \[sizeStyles, styles\] | | |
-| \`orientation\` orientation | \`'horizontal' \\| 'vertical'\` Renders the card's orientation \* Type Default 'vertical' | | |
-| \`withFooter\` with-footer | \`boolean\` Renders the card with a footer. Only needed for SSR, otherwise is automatically added. Type Default false | | |
-| \`withHeader\` with-header | \`boolean\` Renders the card with a header. Only needed for SSR, otherwise is automatically added. Type Default false | | |
-| \`withMedia\` with-media | \`boolean\` Renders the card with an image. Only needed for SSR, otherwise is automatically added. Type Default false | | |
-
-## CSS custom properties
-
-Learn more about [CSS custom properties](https://webawesome.com/docs/customizing/#custom-properties).
-
-| Name | Description |
-| --- | --- |
-| \`--spacing\` | \`var(--wa-space-l)\` The amount of space around and between sections of the card. Expects a single value. Default |
-
-## CSS parts
-
-Learn more about [CSS parts](https://webawesome.com/docs/customizing/#css-parts).
-
-| Name | Description | CSS selector |
-| --- | --- | --- |
-| \`body\` | The container that wraps the card's main content. | \`::part(body)\` |
-| \`footer\` | The container that wraps the card's footer. | \`::part(footer)\` |
-| \`header\` | The container that wraps the card's header. | \`::part(header)\` |
-| \`media\` | The container that wraps the card's media. | \`::part(media)\` |
-
-**Need a hand?** Report a bug Ask for help

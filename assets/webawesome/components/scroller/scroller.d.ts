@@ -1,7 +1,7 @@
 import WebAwesomeElement from '../../internal/webawesome-element.js';
 /**
- * @summary Scrollers create an accessible container while providing visual cues that help users identify and navigate
- *  through content that scrolls.
+ * @summary Scrollers wrap overflowing content in an accessible container with visual cues that help users recognize and
+ *  navigate scrollable regions.
  * @documentation https://webawesome.com/docs/components/scroller
  * @status stable
  * @since 3.0
@@ -12,6 +12,8 @@ import WebAwesomeElement from '../../internal/webawesome-element.js';
  * @cssproperty [--shadow-size=2rem] - The size of the shadow.
  *
  * @csspart content - The container that wraps the slotted content.
+ * @csspart start-shadow - The scroll shadow shown at the start edge when more content is available, unless `without-shadow` is set.
+ * @csspart end-shadow - The scroll shadow shown at the end edge when more content is available, unless `without-shadow` is set.
  */
 export default class WaScroller extends WebAwesomeElement {
     static css: import("lit").CSSResult[];

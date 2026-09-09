@@ -1,15 +1,66 @@
 # Divider
 
-**Full documentation:** https://webawesome.com/docs/components/divider
+`<wa-divider>`
 
+Stable [Layout](https://webawesome.com/docs/components/?category=layout) [Since 2.0](https://webawesome.com/docs/resources/changelog#wa_200)
 
-`<wa-divider>` Since 2.0 stable
-
-Dividers are used to visually separate or group elements.
+Dividers visually separate or group adjacent elements with a horizontal or vertical line. Use them to establish rhythm and hierarchy within menus, toolbars, and layouts.
 
 ```html
 <wa-divider></wa-divider>
 ```
+
+## API
+
+### Importing
+
+If you're using the autoloader or a hosted project, components load on demand — no manual import needed. To cherry-pick a component manually, use one of the following snippets.
+
+\*\*CDN\*\*
+
+Import this component directly from the CDN:
+
+```js
+import 'https://ka-f.webawesome.com/webawesome@3.12.0/components/divider/divider.js';
+```
+
+\*\*npm\*\*
+
+After installing Web Awesome via npm, import this component:
+
+```js
+import '@awesome.me/webawesome/dist/components/divider/divider.js';
+```
+
+\*\*Self-Hosted\*\*
+
+If you're self-hosting Web Awesome, import this component from your server:
+
+```js
+import './webawesome/dist/components/divider/divider.js';
+```
+
+\*\*React\*\*
+
+To import this component for React 18 or below, use the following code:
+
+```js
+import WaDivider from '@awesome.me/webawesome/dist/react/divider/index.js';
+```
+
+### Attributes & Properties
+
+| Name | Description | Reflects |
+| --- | --- | --- |
+| \`orientation\` orientation | \`'horizontal' \\| 'vertical'\` Sets the divider's orientation. Type Default 'horizontal' | |
+
+### CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| \`--color\` | The color of the divider. |
+| \`--spacing\` | The spacing of the divider. |
+| \`--width\` | The width of the divider. |
 
 ## Examples
 
@@ -26,15 +77,15 @@ Use the `--width` custom property to change the width of the divider.
 Use the `--color` custom property to change the color of the divider.
 
 ```html
-<wa-divider style="--color: tomato;"></wa-divider>
+<wa-divider style="--color: var(--wa-color-brand-fill-loud);"></wa-divider>
 ```
 
 ### Spacing
 
-Use the `--spacing` custom property to change the amount of space between the divider and it's neighboring elements.
+Use the `--spacing` custom property to change the amount of space between the divider and its neighboring elements.
 
 ```html
-<div style="text-align: center;">
+<div class="wa-text-center">
   Above
   <wa-divider style="--spacing: 2rem;"></wa-divider>
   Below
@@ -43,7 +94,7 @@ Use the `--spacing` custom property to change the amount of space between the di
 
 ### Orientation
 
-The default orientation for dividers is `horizontal`. Set `orientation` attribute to `vertical` to draw a vertical divider. The divider will span the full height of its [Flexbox](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox) or [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/grid) container.
+The default orientation for dividers is `horizontal`. Set the `orientation` attribute to `vertical` to draw a vertical divider. The divider will span the full height of its [Flexbox](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox) or [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/grid) container.
 
 ```html
 <div style="display: flex; align-items: center;">
@@ -63,7 +114,7 @@ Use dividers in [dropdowns](https://webawesome.com/docs/components/dropdown) to 
 
 ```html
 <wa-dropdown style="max-width: 200px;">
-  <wa-button slot="trigger" with-caret>Menu</wa-button>
+  <wa-button appearance="filled" slot="trigger" with-caret>Menu</wa-button>
   <wa-dropdown-item value="1">Option 1</wa-dropdown-item>
   <wa-dropdown-item value="2">Option 2</wa-dropdown-item>
   <wa-dropdown-item value="3">Option 3</wa-dropdown-item>
@@ -73,48 +124,3 @@ Use dividers in [dropdowns](https://webawesome.com/docs/components/dropdown) to 
   <wa-dropdown-item value="6">Option 6</wa-dropdown-item>
 </wa-dropdown>
 ```
-
-## Importing
-
-Autoloading components via [projects](https://webawesome.com/docs/#using-a-project) is the recommended way to import components. If you prefer to do it manually, use one of the following code snippets.
-
-\*\*CDN\*\*
-
-Let your project code do the work! [Sign up for free](https://webawesome.com/signup) to use a project with your very own CDN — it's the fastest and easiest way to use Web Awesome.
-
-\*\*npm\*\*
-
-To manually import this component from NPM, use the following code.
-
-```js
-import '@awesome.me/webawesome/dist/components/divider/divider.js';
-```
-
-\*\*React\*\*
-
-To manually import this component from React, use the following code.
-
-```js
-import WaDivider from '@awesome.me/webawesome/dist/react/divider';
-```
-
-## Attributes & Properties
-
-Learn more about [attributes and properties](https://webawesome.com/docs/usage/#attributes-and-properties).
-
-| Name | Description | Reflects |
-| --- | --- | --- |
-| \`css\` | \`CSSResultGroup \\| undefined\` One or more CSSResultGroup to include in the component's shadow root. Host styles are automatically prepended. Type Default styles | | |
-| \`orientation\` orientation | \`'horizontal' \\| 'vertical'\` Sets the divider's orientation. Type Default 'horizontal' | | |
-
-## CSS custom properties
-
-Learn more about [CSS custom properties](https://webawesome.com/docs/customizing/#custom-properties).
-
-| Name | Description |
-| --- | --- |
-| \`--color\` | The color of the divider. |
-| \`--spacing\` | The spacing of the divider. |
-| \`--width\` | The width of the divider. |
-
-**Need a hand?** Report a bug Ask for help

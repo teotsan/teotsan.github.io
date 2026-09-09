@@ -3,8 +3,8 @@ import { type EventName } from '@lit/react';
 import type { WaAfterHideEvent, WaAfterShowEvent, WaHideEvent, WaSelectEvent, WaShowEvent } from '../../events/events.js';
 export type { WaAfterHideEvent, WaAfterShowEvent, WaHideEvent, WaSelectEvent, WaShowEvent, } from '../../events/events.js';
 /**
- * @summary Dropdowns display a list of options that can be triggered by a button or other element. They support
- *  keyboard navigation, submenus, and various customization options.
+ * @summary Dropdowns display a list of options triggered by a button or other element. They support keyboard
+ *  navigation, submenus, and checkable items for building menus and context actions.
  * @documentation https://webawesome.com/docs/components/dropdown
  * @status stable
  * @since 2.0
@@ -21,7 +21,7 @@ export type { WaAfterHideEvent, WaAfterShowEvent, WaHideEvent, WaSelectEvent, Wa
  * @slot - The dropdown's items, typically `<wa-dropdown-item>` elements.
  * @slot trigger - The element that triggers the dropdown, such as a `<wa-button>` or `<button>`.
  *
- * @csspart base - The component's host element.
+ * @csspart base - Deprecated. Style the host element instead.
  * @csspart menu - The dropdown menu container.
  *
  * @cssproperty --show-duration - The duration of the show animation.

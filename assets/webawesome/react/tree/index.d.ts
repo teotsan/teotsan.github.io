@@ -3,7 +3,8 @@ import { type EventName } from '@lit/react';
 import type { WaSelectionChangeEvent } from '../../events/events.js';
 export type { WaSelectionChangeEvent } from '../../events/events.js';
 /**
- * @summary Trees allow you to display a hierarchical list of selectable [tree items](/docs/components/tree-item). Items with children can be expanded and collapsed as desired by the user.
+ * @summary Trees allow you to display a hierarchical list of selectable tree items. Items with children can be expanded
+ *  and collapsed as desired by the user.
  * @documentation https://webawesome.com/docs/components/tree
  * @status stable
  * @since 2.0
@@ -16,7 +17,8 @@ export type { WaSelectionChangeEvent } from '../../events/events.js';
  * @slot expand-icon - The icon to show when the tree item is expanded. Works best with `<wa-icon>`.
  * @slot collapse-icon - The icon to show when the tree item is collapsed. Works best with `<wa-icon>`.
  *
- * @csspart base - The component's base wrapper.
+ * @csspart base - Deprecated. Use the `tree` part instead.
+ * @csspart tree - The component's outer wrapper.
  *
  * @cssproperty [--indent-size=var(--wa-space-m)] - The size of the indentation for nested items.
  * @cssproperty [--indent-guide-color=var(--wa-color-surface-border)] - The color of the indentation line.

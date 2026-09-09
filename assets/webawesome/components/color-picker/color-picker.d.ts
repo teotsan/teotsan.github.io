@@ -7,8 +7,13 @@ import '../input/input.js';
 import type WaInput from '../input/input.js';
 import '../popup/popup.js';
 import type WaPopup from '../popup/popup.js';
+export interface WaColorPickerSwatch {
+    color: string;
+    label: string;
+}
 /**
- * @summary Color pickers allow the user to select a color.
+ * @summary Color pickers let users choose a color from a visual palette or by entering a value. They support HEX, RGB,
+ *  HSL, and HSV formats with optional alpha channel and swatch presets.
  * @documentation https://webawesome.com/docs/components/color-picker
  * @status stable
  * @since 2.0
@@ -28,8 +33,14 @@ import type WaPopup from '../popup/popup.js';
  * @event input - Emitted when the color picker receives input.
  * @event wa-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
- * @csspart base - The component's base wrapper.
+ * @csspart base - Deprecated. Use the `color-picker` part instead.
+ * @csspart color-picker - The dropdown panel that holds the grid, sliders, and swatches.
  * @csspart trigger - The color picker's dropdown trigger.
+ * @csspart trigger-container - The container that wraps the color picker's trigger.
+ * @csspart form-control - The form control that wraps the label, input, and hint.
+ * @csspart form-control-label - The label.
+ * @csspart form-control-input - The color picker's trigger button.
+ * @csspart hint - The hint's wrapper.
  * @csspart swatches - The container that holds the swatches.
  * @csspart swatch - Each individual swatch.
  * @csspart grid - The color grid.
@@ -65,6 +76,8 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
     static css: import("lit").CSSResult[];
     static shadowRootOptions: {
         delegatesFocus: boolean;
+        clonable?: boolean;
+        customElementRegistry?: CustomElementRegistry;
         mode: ShadowRootMode;
         serializable?: boolean;
         slotAssignment?: SlotAssignmentMode;
@@ -83,9 +96,9 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
     trigger: HTMLButtonElement;
     private hasFocus;
     private isDraggingGridHandle;
-    private isEmpty;
     private inputValue;
     private hue;
+    private isEmpty;
     private saturation;
     private brightness;
     private alpha;
@@ -100,7 +113,15 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
     set value(val: string | null);
     /** The default value of the form control. Primarily used for resetting the form control. */
     defaultValue: string | null;
+    /**
+     * Only required for SSR. Set to `true` if you're slotting in a `label` element so the server-rendered markup
+     * includes the label before the component hydrates on the client.
+     */
     withLabel: boolean;
+    /**
+     * Only required for SSR. Set to `true` if you're slotting in a `hint` element so the server-rendered markup
+     * includes the hint before the component hydrates on the client.
+     */
     withHint: boolean;
     private hasEyeDropper;
     /**
@@ -118,7 +139,13 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
      */
     format: 'hex' | 'rgb' | 'hsl' | 'hsv';
     /** Determines the size of the color picker's trigger */
-    size: 'small' | 'medium' | 'large';
+    size: 'xs' | 's' | 'm' | 'l' | 'xl' | 'small' | 'medium' | 'large';
+    handleSizeChange(): void;
+    /**
+     * The preferred placement of the color picker's popup. Note that the actual placement will vary as configured to
+     * keep the panel inside of the viewport.
+     */
+    placement: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'right' | 'right-start' | 'right-end' | 'left' | 'left-start' | 'left-end';
     /** Removes the button that lets users toggle between format.   */
     withoutFormatToggle: boolean;
     /** The name of the form control, submitted as a name/value pair with form data. */
@@ -137,12 +164,18 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
     /**
      * One or more predefined color swatches to display as presets in the color picker. Can include any format the color
      * picker can parse, including HEX(A), RGB(A), HSL(A), HSV(A), and CSS color names. Each color must be separated by a
-     * semicolon (`;`). Alternatively, you can pass an array of color values to this property using JavaScript.
+     * semicolon (`;`). Alternatively, you can pass an array of color values or an array of `{ color, label }` objects to
+     * this property using JavaScript. When using objects with labels, the label will be used for the swatch's accessible
+     * name instead of the raw color value.
      */
-    swatches: string | string[];
+    swatches: string | string[] | WaColorPickerSwatch[];
     /** Makes the color picker a required field. */
     required: boolean;
     constructor();
+    /**
+     * @internal
+     */
+    protected updateFormValue(value: unknown): void;
     private handleCopy;
     private handleFocusIn;
     private handleFocusOut;
@@ -170,7 +203,7 @@ export default class WaColorPicker extends WebAwesomeFormAssociatedElement {
     private stopNestedEventPropagation;
     handleFormatChange(): void;
     handleOpacityChange(): void;
-    protected willUpdate(changedProperties: PropertyValues<this>): void;
+    willUpdate(changedProperties: PropertyValues<this>): void;
     handleValueChange(oldValue: string | undefined, newValue: string): void;
     /** Sets focus on the color picker. */
     focus(options?: FocusOptions): void;

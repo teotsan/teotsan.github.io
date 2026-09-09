@@ -1,6 +1,7 @@
 import Component from '../../components/card/card.js';
 /**
- * @summary Cards can be used to group related subjects in a container.
+ * @summary Cards group related content and actions inside a bordered container. Use them to present products, articles,
+ *  user profiles, or any self-contained unit of information.
  * @documentation https://webawesome.com/docs/components/card
  * @status stable
  * @since 2.0
@@ -17,8 +18,11 @@ import Component from '../../components/card/card.js';
  * @csspart header - The container that wraps the card's header.
  * @csspart body - The container that wraps the card's main content.
  * @csspart footer - The container that wraps the card's footer.
+ * @csspart actions - The container that wraps the card's actions.
  *
  * @cssproperty [--spacing=var(--wa-space-l)] - The amount of space around and between sections of the card. Expects a single value.
+ *
+ * @ssr - If you use the header, media, or footer slots, set the matching `with-header`, `with-media`, or `with-footer` attribute — otherwise only the card's body will render during SSR. This works around the lack of a `:has-slotted` CSS pseudo-class, which would normally let us style borders based on slotted content.
  */
 declare const reactWrapper: import("@lit/react").ReactWebComponent<Component, {}>;
 export default reactWrapper;

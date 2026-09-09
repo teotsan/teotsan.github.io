@@ -1,7 +1,7 @@
 import type { PropertyValues } from 'lit';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-form-associated-element.js';
 /**
- * @summary Textareas collect data from the user and allow multiple lines of text.
+ * @summary Textareas collect multi-line text input from the user, with optional resizing and character counting.
  * @documentation https://webawesome.com/docs/components/textarea
  * @status stable
  * @since 2.0
@@ -15,11 +15,14 @@ import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-form-
  * @event input - Emitted when the control receives input.
  * @event wa-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
- * @csspart label - The label
- * @csspart form-control-input - The input's wrapper.
+ * @csspart form-control-label - The label.
+ * @csspart label - Deprecated. Use the `form-control-label` part instead.
  * @csspart hint - The hint's wrapper.
  * @csspart textarea - The internal `<textarea>` control.
- * @csspart base - The wrapper around the `<textarea>` control.
+ * @csspart base - Deprecated. Use the `textarea-wrapper` part instead.
+ * @csspart textarea-wrapper - The component's outer wrapper.
+ * @csspart textarea-adjuster - The invisible sizer that grows the control to fit its content when `resize` is `auto`.
+ * @csspart count - The character count element, rendered when the `with-count` attribute is present.
  *
  * @cssstate blank - The textarea is empty.
  */
@@ -28,7 +31,10 @@ export default class WaTextarea extends WebAwesomeFormAssociatedElement {
     static get validators(): import("../../internal/webawesome-form-associated-element.js").Validator<WebAwesomeFormAssociatedElement>[];
     assumeInteractionOn: string[];
     private readonly hasSlotController;
-    private resizeObserver;
+    private readonly localize;
+    private resizeObserver?;
+    private countAnnounceTimeout;
+    private announcedCountText;
     input: HTMLTextAreaElement;
     base: HTMLDivElement;
     sizeAdjuster: HTMLTextAreaElement;
@@ -42,7 +48,8 @@ export default class WaTextarea extends WebAwesomeFormAssociatedElement {
     /** The default value of the form control. Primarily used for resetting the form control. */
     defaultValue: string;
     /** The textarea's size. */
-    size: 'small' | 'medium' | 'large';
+    size: 'xs' | 's' | 'm' | 'l' | 'xl' | 'small' | 'medium' | 'large';
+    handleSizeChange(): void;
     /** The textarea's visual appearance. */
     appearance: 'filled' | 'outlined' | 'filled-outlined';
     /** The textarea's label. If you need to display HTML, use the `label` slot instead. */
@@ -67,8 +74,11 @@ export default class WaTextarea extends WebAwesomeFormAssociatedElement {
     maxlength: number;
     /** Controls whether and how text input is automatically capitalized as it is entered by the user. */
     autocapitalize: 'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters';
-    /** Indicates whether the browser's autocorrect feature is on or off. */
-    autocorrect: string;
+    /**
+     * Indicates whether the browser's autocorrect feature is on or off. When set as an attribute, use `"off"` or `"on"`.
+     * When set as a property, use `true` or `false`.
+     */
+    autocorrect: boolean;
     /**
      * Specifies what permission the browser has to provide assistance in filling out form field values. Refer to
      * [this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values.
@@ -86,18 +96,30 @@ export default class WaTextarea extends WebAwesomeFormAssociatedElement {
      */
     inputmode: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
     /**
-     * Used for SSR. If you're slotting in a `label` element, make sure to set this to `true`.
+     * Only required for SSR. Set to `true` if you're slotting in a `label` element so the server-rendered markup
+     * includes the label before the component hydrates on the client.
      */
     withLabel: boolean;
     /**
-     * Used for SSR. If you're slotting in a `hint` element, make sure to set this to `true`.
+     * Only required for SSR. Set to `true` if you're slotting in a `hint` element so the server-rendered markup
+     * includes the hint before the component hydrates on the client.
      */
     withHint: boolean;
+    /** Shows a character count below the textarea. When `maxlength` is set, shows remaining characters instead. */
+    withCount: boolean;
     connectedCallback(): void;
     disconnectedCallback(): void;
+    /**
+     * @internal
+     */
+    protected updateFormValue(value: string | FormData | File | null): void;
+    private lastObservedWidth;
+    /** Creates or destroys the resize observer based on the current resize mode. */
+    private updateResizeObserver;
     private handleBlur;
     private handleChange;
     private handleInput;
+    private scheduleCountAnnouncement;
     private setTextareaDimensions;
     handleRowsChange(): void;
     handleValueChange(): Promise<void>;

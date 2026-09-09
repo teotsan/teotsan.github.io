@@ -1,11 +1,10 @@
 # Scroller
 
-**Full documentation:** https://webawesome.com/docs/components/scroller
+`<wa-scroller>`
 
+Stable [Layout](https://webawesome.com/docs/components/?category=layout) [Since 3.0](https://webawesome.com/docs/resources/changelog#wa_300)
 
-`<wa-scroller>` Since 3.0 stable
-
-Scrollers create an accessible container while providing visual cues that help users identify and navigate through content that scrolls.
+Scrollers wrap overflowing content in an accessible container with visual cues that help users recognize and navigate scrollable regions.
 
 ```html
 <wa-scroller id="scroller__overview">
@@ -75,11 +74,78 @@ Scrollers create an accessible container while providing visual cues that help u
 </style>
 ```
 
+## API
+
+### Importing
+
+If you're using the autoloader or a hosted project, components load on demand — no manual import needed. To cherry-pick a component manually, use one of the following snippets.
+
+\*\*CDN\*\*
+
+Import this component directly from the CDN:
+
+```js
+import 'https://ka-f.webawesome.com/webawesome@3.12.0/components/scroller/scroller.js';
+```
+
+\*\*npm\*\*
+
+After installing Web Awesome via npm, import this component:
+
+```js
+import '@awesome.me/webawesome/dist/components/scroller/scroller.js';
+```
+
+\*\*Self-Hosted\*\*
+
+If you're self-hosting Web Awesome, import this component from your server:
+
+```js
+import './webawesome/dist/components/scroller/scroller.js';
+```
+
+\*\*React\*\*
+
+To import this component for React 18 or below, use the following code:
+
+```js
+import WaScroller from '@awesome.me/webawesome/dist/react/scroller/index.js';
+```
+
+### Slots
+
+| Name | Description |
+| --- | --- |
+| (default) | The content to show inside the scroller. |
+
+### Attributes & Properties
+
+| Name | Description | Reflects |
+| --- | --- | --- |
+| \`orientation\` orientation | \`'horizontal' \\| 'vertical'\` The scroller's orientation. Type Default 'horizontal' | |
+| \`withoutScrollbar\` without-scrollbar | \`boolean\` Removes the visible scrollbar. Type Default false | |
+| \`withoutShadow\` without-shadow | \`boolean\` Removes the shadows. Type Default false | |
+
+### CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| \`--shadow-color\` | \`var(--wa-color-surface-default)\` The base color of the shadow. Default |
+| \`--shadow-size\` | \`2rem\` The size of the shadow. Default |
+
+### CSS Parts
+
+| Name | Description | CSS selector |
+| --- | --- | --- |
+| \`content\` | The container that wraps the slotted content. | \`::part(content)\` |
+| \`end-shadow\` | \`without-shadow\` The scroll shadow shown at the end edge when more content is available, unless is set. | \`::part(end-shadow)\` |
+| \`start-shadow\` | \`without-shadow\` The scroll shadow shown at the start edge when more content is available, unless is set. | \`::part(start-shadow)\` |
+
 ## Examples
 
 ### Adding Content
 
-The scroller component automatically provides a scrollable container for any content that exceeds the available space. Simply add your content as children of the `<wa-scroller>` element, and it will handle the rest.
+The scroller component automatically provides a scrollable container for any content that exceeds the available space. Add your content as children of the `<wa-scroller>` element, and it handles the rest.
 
 ```html
 <wa-scroller>
@@ -220,66 +286,5 @@ Use the `without-scrollbar` attribute to hide the scrollbar while maintaining sc
 </wa-scroller>
 ```
 
-Hiding scrollbars can negatively impact accessibility. Users who rely on visible scrollbars to navigate content may have difficulty recognizing that content is scrollable or controlling their scrolling position. Consider the needs of all users when implementing this option.
-
-## Importing
-
-Autoloading components via [projects](https://webawesome.com/docs/#using-a-project) is the recommended way to import components. If you prefer to do it manually, use one of the following code snippets.
-
-\*\*CDN\*\*
-
-Let your project code do the work! [Sign up for free](https://webawesome.com/signup) to use a project with your very own CDN — it's the fastest and easiest way to use Web Awesome.
-
-\*\*npm\*\*
-
-To manually import this component from NPM, use the following code.
-
-```js
-import '@awesome.me/webawesome/dist/components/scroller/scroller.js';
-```
-
-\*\*React\*\*
-
-To manually import this component from React, use the following code.
-
-```js
-import WaScroller from '@awesome.me/webawesome/dist/react/scroller';
-```
-
-## Slots
-
-Learn more about [using slots](https://webawesome.com/docs/usage/#slots).
-
-| Name | Description |
-| --- | --- |
-| (default) | The content to show inside the scroller. |
-
-## Attributes & Properties
-
-Learn more about [attributes and properties](https://webawesome.com/docs/usage/#attributes-and-properties).
-
-| Name | Description | Reflects |
-| --- | --- | --- |
-| \`css\` | \`CSSResultGroup \\| undefined\` One or more CSSResultGroup to include in the component's shadow root. Host styles are automatically prepended. Type Default \[styles\] | | |
-| \`orientation\` orientation | \`'horizontal' \\| 'vertical'\` The scroller's orientation. Type Default 'horizontal' | | |
-| \`withoutScrollbar\` without-scrollbar | \`boolean\` Removes the visible scrollbar. Type Default false | | |
-| \`withoutShadow\` without-shadow | \`boolean\` Removes the shadows. Type Default false | | |
-
-## CSS custom properties
-
-Learn more about [CSS custom properties](https://webawesome.com/docs/customizing/#custom-properties).
-
-| Name | Description |
-| --- | --- |
-| \`--shadow-color\` | \`var(--wa-color-surface-default)\` The base color of the shadow. Default |
-| \`--shadow-size\` | \`2rem\` The size of the shadow. Default |
-
-## CSS parts
-
-Learn more about [CSS parts](https://webawesome.com/docs/customizing/#css-parts).
-
-| Name | Description | CSS selector |
-| --- | --- | --- |
-| \`content\` | The container that wraps the slotted content. | \`::part(content)\` |
-
-**Need a hand?** Report a bug Ask for help
+**Hiding the scrollbar can hurt accessibility.**  
+People who rely on a visible scrollbar may not realize the content scrolls, or may struggle to control their position. Weigh that before turning it off.

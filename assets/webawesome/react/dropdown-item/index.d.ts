@@ -1,8 +1,9 @@
 import Component from '../../components/dropdown-item/dropdown-item.js';
 /**
- * @summary Represents an individual item within a dropdown menu, supporting standard items, checkboxes, and submenus.
+ * @summary Dropdown items represent selectable entries within a dropdown menu, including standard actions, checkable
+ *  items, and submenu triggers.
  * @documentation https://webawesome.com/docs/components/dropdown-item
- * @status experimental
+ * @status stable
  * @since 3.0
  *
  * @dependency wa-icon
@@ -21,6 +22,13 @@ import Component from '../../components/dropdown-item/dropdown-item.js';
  * @csspart details - The container for the details slot.
  * @csspart submenu-icon - The submenu indicator icon (a `<wa-icon>` element).
  * @csspart submenu - The submenu container.
+ *
+ * @cssstate active - Applied when the item is the active item in the menu.
+ * @cssstate checked - Applied when the item is checked.
+ * @cssstate disabled - Applied when the item is disabled.
+ * @cssstate has-submenu - Applied when the item has a submenu.
+ * @cssstate link - Applied when the item is a link (i.e. `href` is set).
+ * @cssstate submenu-open - Applied when the item's submenu is open.
  */
 declare const reactWrapper: import("@lit/react").ReactWebComponent<Component, {}>;
 export default reactWrapper;

@@ -1,11 +1,13 @@
 import WebAwesomeElement from '../../internal/webawesome-element.js';
 /**
- * @summary Spinners are used to show the progress of an indeterminate operation.
+ * @summary Spinners indicate that an operation is in progress when the duration is unknown. Use them for loading states
+ *  where a determinate progress bar isn't practical.
  * @documentation https://webawesome.com/docs/components/spinner
  * @status stable
  * @since 2.0
  *
- * @csspart base - The component's base wrapper.
+ * @csspart base - Deprecated. Use the `spinner` part instead.
+ * @csspart spinner - The component's outer wrapper.
  *
  * @cssproperty --track-width - The width of the track.
  * @cssproperty --track-color - The color of the track.

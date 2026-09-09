@@ -2,6 +2,8 @@
 
 **Full documentation:** https://webawesome.com/docs/frameworks/svelte
 
+Frameworks Svelte
+
 Svelte [plays nice](https://custom-elements-everywhere.com/#svelte) with custom elements, so you can use Web Awesome in your Svelte apps with ease.
 
 ## Installation
@@ -12,41 +14,35 @@ To add Web Awesome to your Svelte app, install the package from npm.
 npm install @awesome.me/webawesome
 ```
 
-Next, import the Web Awesome stylesheet, import the components you need, and then start using Web Awesome!
-
-```jsx
-// main.js or main.ts
-import '@awesome.me/webawesome/dist/styles/webawesome.css';
-import '@awesome.me/webawesome/dist/components/button/button.js';
-```
-
 ## Usage
 
-### QR code generator example
+Import the Web Awesome stylesheet and the components you need, then start using them:
 
-```jsx
-<h1>Live editing</h1>
-
-<wa-input label="Message" value={message} oninput={event => message = event.target.value}></wa-input>
-
-<wa-alert open>
-  <wa-icon slot="icon" name="info-circle"></wa-icon>
-  {message}
-</wa-alert>
-
+```html
+<!-- app.html -->
 <script>
-  import '@awesome.me/webawesome/dist/components/alert/alert.js'
+  import '@awesome.me/webawesome/dist/styles/webawesome.css';
+  import '@awesome.me/webawesome/dist/components/callout/callout.js'
   import '@awesome.me/webawesome/dist/components/input/input.js';
 
   let message = $state('')
 </script>
+
+<h1>Live editing</h1>
+
+<wa-input label="Message" value={message} oninput={event => message = event.target.value}></wa-input>
+
+<wa-callout>
+  <wa-icon slot="icon" name="info-circle"></wa-icon>
+  {message}
+</wa-callout>
 ```
 
-### Two-way Binding
+### Two-Way Binding
 
-One caveat is there's currently Svelte only supports `bind:value` directive in `<input>`, `<textarea>` and `<select>`, but you can still achieve two-way binding manually.
+One caveat: Svelte currently only supports the `bind:value` directive on `<input>`, `<textarea>`, and `<select>`, but you can still achieve two-way binding manually.
 
-```jsx
+```html
 // ❌ These do not work
 <wa-input bind:value="name"></wa-input>
 
@@ -70,7 +66,7 @@ Slots in Web Awesome/web components are functionally the same as basic slots in 
 
 Here is an example:
 
-```jsx
+```html
 <wa-drawer label="Drawer" placement="start" class="drawer-placement-start" bind:open={drawerIsOpen}>
   This drawer slides in from the start.
   <div slot="footer">
@@ -81,4 +77,30 @@ Here is an example:
 </wa-drawer>
 ```
 
-Are you using Web Awesome with Svelte? [Help us improve this page!](https://github.com/shoelace-style/webawesome/blob/next/packages/webawesome/docs/docs/frameworks/svelte.md)
+**Web Awesome is ready to use.**  
+Explore components, utilities, and theming to start building.
+
+## Next Steps
+
+[Components
+
+Start building your interface.
+
+](https://webawesome.com/docs/components)[CSS Utilities
+
+Lay out and style without custom CSS.
+
+](https://webawesome.com/docs/utilities)[Theming
+
+Match Web Awesome to your brand.
+
+](https://webawesome.com/docs/themes)[Svelte Docs
+
+The official Svelte documentation.
+
+](https://svelte.dev)
+
+**Using Web Awesome with Svelte?**  
+Found a bug or have a suggestion? Help make things more awesome!
+
+Share feedback

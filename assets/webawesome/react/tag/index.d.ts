@@ -3,7 +3,8 @@ import { type EventName } from '@lit/react';
 import type { WaRemoveEvent } from '../../events/events.js';
 export type { WaRemoveEvent } from '../../events/events.js';
 /**
- * @summary Tags are used as labels to organize things or to indicate a selection.
+ * @summary Tags label, categorize, or represent selections with a compact visual marker. Use them for status
+ *  indicators, filters, or removable chips.
  * @documentation https://webawesome.com/docs/components/tag
  * @status stable
  * @since 2.0
@@ -14,7 +15,7 @@ export type { WaRemoveEvent } from '../../events/events.js';
  *
  * @event wa-remove - Emitted when the remove button is activated.
  *
- * @csspart base - The component's base wrapper.
+ * @csspart base - Deprecated. Style the host element instead.
  * @csspart content - The tag's content.
  * @csspart remove-button - The tag's remove button, a `<wa-button>`.
  * @csspart remove-button__base - The remove button's exported `base` part.

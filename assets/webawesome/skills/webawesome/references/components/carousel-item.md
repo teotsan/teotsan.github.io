@@ -1,60 +1,59 @@
 # Carousel Item
 
-**Full documentation:** https://webawesome.com/docs/components/carousel-item
+`<wa-carousel-item>`
 
+Experimental [Media](https://webawesome.com/docs/components/?category=media) [Since 2.0](https://webawesome.com/docs/resources/changelog#wa_200)
 
-`<wa-carousel-item>` Since 2.0 experimental
+Carousel items represent individual slides within a carousel.
 
-A carousel item represent a slide within a carousel.
+This component must be used as a child of [`<wa-carousel>`](https://webawesome.com/docs/components/carousel). Please see the [Carousel docs](https://webawesome.com/docs/components/carousel) to see examples of this component in action.
 
-This component must be used as a child of `<wa-carousel>`. Please see the [Carousel docs](https://webawesome.com/docs/components/carousel) to see examples of this component in action.
+## API
 
-## Importing
+### Importing
 
-Autoloading components via [projects](https://webawesome.com/docs/#using-a-project) is the recommended way to import components. If you prefer to do it manually, use one of the following code snippets.
+If you're using the autoloader or a hosted project, components load on demand — no manual import needed. To cherry-pick a component manually, use one of the following snippets.
 
 \*\*CDN\*\*
 
-Let your project code do the work! [Sign up for free](https://webawesome.com/signup) to use a project with your very own CDN — it's the fastest and easiest way to use Web Awesome.
+Import this component directly from the CDN:
+
+```js
+import 'https://ka-f.webawesome.com/webawesome@3.12.0/components/carousel-item/carousel-item.js';
+```
 
 \*\*npm\*\*
 
-To manually import this component from NPM, use the following code.
+After installing Web Awesome via npm, import this component:
 
 ```js
 import '@awesome.me/webawesome/dist/components/carousel-item/carousel-item.js';
 ```
 
-\*\*React\*\*
+\*\*Self-Hosted\*\*
 
-To manually import this component from React, use the following code.
+If you're self-hosting Web Awesome, import this component from your server:
 
 ```js
-import WaCarouselItem from '@awesome.me/webawesome/dist/react/carousel-item';
+import './webawesome/dist/components/carousel-item/carousel-item.js';
 ```
 
-## Slots
+\*\*React\*\*
 
-Learn more about [using slots](https://webawesome.com/docs/usage/#slots).
+To import this component for React 18 or below, use the following code:
+
+```js
+import WaCarouselItem from '@awesome.me/webawesome/dist/react/carousel-item/index.js';
+```
+
+### Slots
 
 | Name | Description |
 | --- | --- |
 | (default) | The carousel item's content.. |
 
-## Attributes & Properties
-
-Learn more about [attributes and properties](https://webawesome.com/docs/usage/#attributes-and-properties).
-
-| Name | Description | Reflects |
-| --- | --- | --- |
-| \`css\` | \`CSSResultGroup \\| undefined\` One or more CSSResultGroup to include in the component's shadow root. Host styles are automatically prepended. Type Default styles | | |
-
-## CSS custom properties
-
-Learn more about [CSS custom properties](https://webawesome.com/docs/customizing/#custom-properties).
+### CSS Custom Properties
 
 | Name | Description |
 | --- | --- |
 | \`--aspect-ratio\` | The slide's aspect ratio. Inherited from the carousel by default. |
-
-**Need a hand?** Report a bug Ask for help

@@ -1,41 +1,52 @@
 # Tree Item
 
-**Full documentation:** https://webawesome.com/docs/components/tree-item
+`<wa-tree-item>`
 
+Stable [Navigation](https://webawesome.com/docs/components/?category=navigation) [Since 2.0](https://webawesome.com/docs/resources/changelog#wa_200)
 
-`<wa-tree-item>` Since 2.0 stable
+Tree items represent a single hierarchical node inside a tree, and can contain nested items that expand and collapse.
 
-A tree item serves as a hierarchical node that lives inside a [tree](https://webawesome.com/docs/components/tree).
+This component must be used as a child of [`<wa-tree>`](https://webawesome.com/docs/components/tree). Please see the [Tree docs](https://webawesome.com/docs/components/tree) to see examples of this component in action.
 
-This component must be used as a child of `<wa-tree>`. Please see the [Tree docs](https://webawesome.com/docs/components/tree) to see examples of this component in action.
+## API
 
-## Importing
+### Importing
 
-Autoloading components via [projects](https://webawesome.com/docs/#using-a-project) is the recommended way to import components. If you prefer to do it manually, use one of the following code snippets.
+If you're using the autoloader or a hosted project, components load on demand — no manual import needed. To cherry-pick a component manually, use one of the following snippets.
 
 \*\*CDN\*\*
 
-Let your project code do the work! [Sign up for free](https://webawesome.com/signup) to use a project with your very own CDN — it's the fastest and easiest way to use Web Awesome.
+Import this component directly from the CDN:
+
+```js
+import 'https://ka-f.webawesome.com/webawesome@3.12.0/components/tree-item/tree-item.js';
+```
 
 \*\*npm\*\*
 
-To manually import this component from NPM, use the following code.
+After installing Web Awesome via npm, import this component:
 
 ```js
 import '@awesome.me/webawesome/dist/components/tree-item/tree-item.js';
 ```
 
-\*\*React\*\*
+\*\*Self-Hosted\*\*
 
-To manually import this component from React, use the following code.
+If you're self-hosting Web Awesome, import this component from your server:
 
 ```js
-import WaTreeItem from '@awesome.me/webawesome/dist/react/tree-item';
+import './webawesome/dist/components/tree-item/tree-item.js';
 ```
 
-## Slots
+\*\*React\*\*
 
-Learn more about [using slots](https://webawesome.com/docs/usage/#slots).
+To import this component for React 18 or below, use the following code:
+
+```js
+import WaTreeItem from '@awesome.me/webawesome/dist/react/tree-item/index.js';
+```
+
+### Slots
 
 | Name | Description |
 | --- | --- |
@@ -43,29 +54,22 @@ Learn more about [using slots](https://webawesome.com/docs/usage/#slots).
 | \`collapse-icon\` | The icon to show when the tree item is collapsed. |
 | \`expand-icon\` | The icon to show when the tree item is expanded. |
 
-## Attributes & Properties
-
-Learn more about [attributes and properties](https://webawesome.com/docs/usage/#attributes-and-properties).
+### Attributes & Properties
 
 | Name | Description | Reflects |
 | --- | --- | --- |
-| \`css\` | \`CSSResultGroup \\| undefined\` One or more CSSResultGroup to include in the component's shadow root. Host styles are automatically prepended. Type Default styles | | |
-| \`disabled\` disabled | \`boolean\` Disables the tree item. Type Default false | | |
-| \`expanded\` expanded | \`boolean\` Expands the tree item. Type Default false | | |
-| \`lazy\` lazy | \`boolean\` Enables lazy loading behavior. Type Default false | | |
-| \`selected\` selected | \`boolean\` Draws the tree item in a selected state. Type Default false | | |
+| \`disabled\` disabled | \`boolean\` Disables the tree item. Type Default false | |
+| \`expanded\` expanded | \`boolean\` Expands the tree item. Type Default false | |
+| \`lazy\` lazy | \`boolean\` Enables lazy loading behavior. Type Default false | |
+| \`selected\` selected | \`boolean\` Draws the tree item in a selected state. Type Default false | |
 
-## Methods
-
-Learn more about [methods](https://webawesome.com/docs/usage/#methods).
+### Methods
 
 | Name | Description | Arguments |
 | --- | --- | --- |
 | \`getChildrenItems()\` | Gets all the nested tree items in this node. | \`{ includeDisabled = true }: { includeDisabled?: boolean }\` |
 
-## Events
-
-Learn more about [events](https://webawesome.com/docs/usage/#events).
+### Events
 
 | Name | Description |
 | --- | --- |
@@ -76,18 +80,14 @@ Learn more about [events](https://webawesome.com/docs/usage/#events).
 | \`wa-lazy-change\` | Emitted when the tree item's lazy state changes. |
 | \`wa-lazy-load\` | \`lazy\` Emitted when a item is selected. Use this event to asynchronously load data and append items to the tree before expanding. After appending new items, remove the lazy attribute to remove the loading state and update the tree. |
 
-## CSS custom properties
-
-Learn more about [CSS custom properties](https://webawesome.com/docs/customizing/#custom-properties).
+### CSS Custom Properties
 
 | Name | Description |
 | --- | --- |
-| \`--hide-duration\` | \`200ms\` The animation duration when collapsing tree items. Default |
-| \`--show-duration\` | \`200ms\` The animation duration when expanding tree items. Default |
+| \`--hide-duration\` | \`var(--wa-transition-normal)\` The animation duration when collapsing tree items. Default |
+| \`--show-duration\` | \`var(--wa-transition-normal)\` The animation duration when expanding tree items. Default |
 
-## Custom States
-
-Learn more about [custom states](https://webawesome.com/docs/customizing/#custom-states).
+### Custom States
 
 | Name | Description | CSS selector |
 | --- | --- | --- |
@@ -96,13 +96,10 @@ Learn more about [custom states](https://webawesome.com/docs/customizing/#custom
 | \`indeterminate\` | Applied when the selection is indeterminate. | \`:state(indeterminate)\` |
 | \`selected\` | Applied when the tree item is selected. | \`:state(selected)\` |
 
-## CSS parts
-
-Learn more about [CSS parts](https://webawesome.com/docs/customizing/#css-parts).
+### CSS Parts
 
 | Name | Description | CSS selector |
 | --- | --- | --- |
-| \`base\` | The component's base wrapper. | \`::part(base)\` |
 | \`checkbox\` | The checkbox that shows when using multiselect. | \`::part(checkbox)\` |
 | \`checkbox\_\_base\` | \`base\` The checkbox's exported part. | \`::part(checkbox\_\_base)\` |
 | \`checkbox\_\_checked-icon\` | \`checked-icon\` The checkbox's exported part. | \`::part(checkbox\_\_checked-icon)\` |
@@ -116,13 +113,13 @@ Learn more about [CSS parts](https://webawesome.com/docs/customizing/#css-parts)
 | \`label\` | The tree item's label. | \`::part(label)\` |
 | \`spinner\` | The spinner that shows when a lazy tree item is in the loading state. | \`::part(spinner)\` |
 | \`spinner\_\_base\` | The spinner's base part. | \`::part(spinner\_\_base)\` |
+| \`tree-item\` | The component's outer wrapper. | \`::part(tree-item)\` |
+| \`base\` | \`tree-item\` Deprecated. Use the part instead. | \`::part(base)\` |
 
-## Dependencies
+### Dependencies
 
 This component automatically imports the following elements. Sub-dependencies, if any exist, will also be included in this list.
 
 -   [`<wa-checkbox>`](https://webawesome.com/docs/components/checkbox)
 -   [`<wa-icon>`](https://webawesome.com/docs/components/icon)
 -   [`<wa-spinner>`](https://webawesome.com/docs/components/spinner)
-
-**Need a hand?** Report a bug Ask for help

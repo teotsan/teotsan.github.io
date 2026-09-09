@@ -2,7 +2,7 @@
 
 **Full documentation:** https://webawesome.com/docs/frameworks/react
 
-Web Awesome offers a React version of every component to provide an idiomatic experience for React users. You can easily toggle between HTML and React examples throughout the documentation.
+Frameworks React
 
 ## Installation
 
@@ -12,72 +12,68 @@ To add Web Awesome to your React app, install the package from npm.
 npm install @awesome.me/webawesome
 ```
 
-Next, import the Web Awesome stylesheet, import the components you need, and then start using Web Awesome!
+Next, include the Web Awesome theme in your app, import the components you need, and start using them!
 
 ```jsx
-// App.jsx (React 19, using native custom elements)
 import '@awesome.me/webawesome/dist/styles/webawesome.css';
 import '@awesome.me/webawesome/dist/components/button/button.js';
 
-export default function App () {
-  return <wa-button>I'm a button!</wa-button>
+export default function App() {
+  return <wa-button variant="brand">Button</wa-button>;
 }
 ```
 
-Now you can start using components!
+React 19+ [supports custom elements](https://react.dev/blog/2024/04/25/react-19#support-for-custom-elements) natively, so you can use Web Awesome components just like any other HTML element. No wrappers needed!
 
-### Preact
+If you're using React 18 or below, skip to the [legacy React wrappers](#legacy-react-wrappers-react-18-and-below) section.
 
-Preact users facing type errors using components may benefit from setting "paths" in their tsconfig.json so that react types will instead resolve to preact/compat as described in [Preact's typescript documentation](https://preactjs.com/guide/v10/typescript/#typescript-preactcompat-configuration).
+**Using Web Awesome Pro?** Visit [your workspaces](https://webawesome.com/workspaces) for personalized installation docs.
 
-## Usage
+## TypeScript
 
-### Importing Components
+If you're using TypeScript, you can add type safety using the types file included with Web Awesome.
 
-Every Web Awesome component is available to import as a React component. Note that we're importing the `<WaButton>` _React component_ instead of the `<wa-button>` _custom element_ in the example below.
-
-```jsx
-import WaButton from '@awesome.me/webawesome/react/button/index.js';
-
-const MyComponent = () => <WaButton variant="primary">Click me</WaButton>;
-
-export default MyComponent;
+```
+node_modules/@awesome.me/webawesome/dist/custom-elements-jsx.d.ts
 ```
 
-#### Notes about tree shaking
+This gives you inline documentation, autocomplete, and type-safe validation for every component. Add the types to your project by updating your `tsconfig.json` file.
 
-Previously, it was recommended to import from a single entrypoint like so:
-
-```jsx
-import { WaButton } from '@awesome.me/webawesome/dist/react';
+```json
+{
+  "compilerOptions": {
+    "types": ["node_modules/@awesome.me/webawesome/dist/custom-elements-jsx.d.ts"]
+  }
+}
 ```
 
-However, tree-shaking extra Web Awesome components proved to be a challenge. As a result, we now recommend cherry-picking components you want to use, rather than importing from a single entrypoint.
+Alternatively, you can create a declaration file and extend JSX's `IntrinsicElements`:
 
-```diff
-- import { WaButton } from '@awesome.me/webawesome/dist/react';
-+ import WaButton from '@awesome.me/webawesome/dist/react/button/index.js';
+```ts
+import type { CustomElements, CustomCssProperties } from '@awesome.me/webawesome/dist/custom-elements-jsx.d.ts';
+
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements extends CustomElements {}
+  }
+  interface CSSProperties extends CustomCssProperties {}
+}
 ```
 
-You can find a copy + paste import for each component in the "importing" section of its documentation.
+## Event Handling
 
-### Event Handling
-
-Many Web Awesome components emit [native events](https://developer.mozilla.org/en-US/docs/Web/API/Event). For example, the [input component](https://webawesome.com/components/input) emits the `input` event when it receives input. In React, you can listen for the event using `onInput`.
+Many Web Awesome components emit [native events](https://developer.mozilla.org/en-US/docs/Web/API/Event). For example, the [input component](https://webawesome.com/docs/components/input) emits the `input` event when it receives input. In React, you can listen for the event using `onInput`.
 
 Here's how you can bind the input's value to a state variable.
 
 ```jsx
 import { useState } from 'react';
-import WaInput from '@awesome.me/webawesome/dist/react/input/index.js';
+import '@awesome.me/webawesome/dist/components/input/input.js';
 
 function MyComponent() {
   const [value, setValue] = useState('');
 
-  return <>
-    <WaInput value={value} onInput={event => setValue(event.target.value)} />;
-    <WaInput defaultValue={"Foo"} /> {/* This is an "uncontrolled input" */}
-  </>
+  return <wa-input value={value} onInput={event => setValue(event.target.value)} />;
 }
 
 export default MyComponent;
@@ -87,36 +83,21 @@ If you're using TypeScript, it's important to note that `event.target` will be a
 
 ```tsx
 import { useState } from 'react';
-import WaInput from '@awesome.me/webawesome/dist/react/input/index.js';
+import '@awesome.me/webawesome/dist/components/input/input.js';
 import type WaInputElement from '@awesome.me/webawesome/dist/components/input/input.js';
 
 function MyComponent() {
   const [value, setValue] = useState('');
 
-  return <WaInput value={value} onInput={event => setValue((event.target as WaInputElement).value)} />;
+  return <wa-input value={value} onInput={event => setValue((event.target as WaInputElement).value)} />;
 }
 
 export default MyComponent;
 ```
 
-You can also import the event type for use in your callbacks, shown below.
+### Preact
 
-```tsx
-import { useCallback, useState } from 'react';
-import WaInput, { type WaInputEvent } from '@awesome.me/webawesome/dist/react/input/index.js';
-import type WaInputElement from '@awesome.me/webawesome/dist/components/input/input.js';
-
-function MyComponent() {
-  const [value, setValue] = useState('');
-  const onInput = useCallback((event: WaInputEvent) => {
-    setValue(event.detail);
-  }, []);
-
-  return <WaInput value={value} onInput={event => setValue((event.target as WaInputElement).value)} />;
-}
-
-export default MyComponent;
-```
+Preact users facing type errors using components may benefit from setting "paths" in their `tsconfig.json` so that react types will instead resolve to preact/compat as described in [Preact's typescript documentation](https://preactjs.com/guide/v10/typescript/#typescript-preactcompat-configuration).
 
 ## Testing with Jest
 
@@ -153,8 +134,8 @@ Object.defineProperty(window, 'matchMedia', {
     removeListener: jest.fn(), // deprecated
     addEventListener: jest.fn(),
     removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn()
-  }))
+    dispatchEvent: jest.fn(),
+  })),
 });
 ```
 
@@ -182,4 +163,91 @@ These instructions are for apps created via Create React App. If you're using Je
 
 For more details, refer to Jest's [`transformIgnorePatterns` customization](https://jestjs.io/docs/tutorial-react-native#transformignorepatterns-customization) documentation.
 
-Are you using Web Awesome with React? [Help us improve this page!](https://github.com/shoelace-style/webawesome/blob/next/packages/webawesome/docs/docs/frameworks/react.md)
+## Legacy React Wrappers (React 18 & Below)
+
+React 18 and below have [poor support](https://custom-elements-everywhere.com/#react) for custom elements. For these versions, Web Awesome provides React wrappers for every component.
+
+### Importing React Wrappers
+
+Every Web Awesome component is available to import as a React component. Note that you import the `<WaButton>` _React component_ instead of the [`<wa-button>`](https://webawesome.com/docs/components/button) _custom element_ in the example below.
+
+```jsx
+import WaButton from '@awesome.me/webawesome/dist/react/button/index.js';
+
+const MyComponent = () => <WaButton variant="primary">Click me</WaButton>;
+
+export default MyComponent;
+```
+
+You can find a copy + paste import for each component by selecting the _React_ tab in the _Importing_ section of each component's documentation.
+
+#### Notes About Tree Shaking
+
+Previously, it was recommended to import from a single entrypoint like so:
+
+```jsx
+import { WaButton } from '@awesome.me/webawesome/dist/react';
+```
+
+However, tree-shaking extra Web Awesome components proved to be a challenge. As a result, we now recommend cherry-picking components you want to use, rather than importing from a single entrypoint.
+
+```diff
+- import { WaButton } from '@awesome.me/webawesome/dist/react';
++ import WaButton from '@awesome.me/webawesome/dist/react/button/index.js';
+```
+
+### Event Handling with React Wrappers
+
+Event handling works the same as with [native custom elements](#event-handling) — bind to `onInput` and type `event.target` identically, just importing the `WaInput` wrapper instead of the custom element.
+
+Wrappers add two conveniences. Pass `defaultValue` for an uncontrolled input:
+
+```jsx
+import WaInput from '@awesome.me/webawesome/dist/react/input/index.js';
+
+<WaInput defaultValue="Foo" />;
+```
+
+And import the component's event type to type your callbacks directly:
+
+```tsx
+import { useCallback, useState } from 'react';
+import WaInput, { type WaInputEvent } from '@awesome.me/webawesome/dist/react/input/index.js';
+
+function MyComponent() {
+  const [value, setValue] = useState('');
+  const onInput = useCallback((event: WaInputEvent) => setValue(event.detail), []);
+
+  return <WaInput value={value} onInput={onInput} />;
+}
+
+export default MyComponent;
+```
+
+**Web Awesome is ready to use.**  
+Explore components, utilities, and theming to start building.
+
+## Next Steps
+
+[Components
+
+Start building your interface.
+
+](https://webawesome.com/docs/components)[CSS Utilities
+
+Lay out and style without custom CSS.
+
+](https://webawesome.com/docs/utilities)[Theming
+
+Match Web Awesome to your brand.
+
+](https://webawesome.com/docs/themes)[React Docs
+
+The official React documentation.
+
+](https://react.dev)
+
+**Using Web Awesome with React?**  
+Found a bug or have a suggestion? Help make things more awesome!
+
+Share feedback

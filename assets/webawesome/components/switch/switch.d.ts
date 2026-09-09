@@ -1,7 +1,8 @@
 import type { PropertyValues } from 'lit';
 import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-form-associated-element.js';
 /**
- * @summary Switches allow the user to toggle an option on or off.
+ * @summary Switches toggle a single setting on or off and apply the change immediately, without requiring a form
+ *  submission.
  * @documentation https://webawesome.com/docs/components/switch
  * @status stable
  * @since 2.0
@@ -15,7 +16,8 @@ import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-form-
  * @event focus - Emitted when the control gains focus.
  * @event wa-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
- * @csspart base - The component's base wrapper.
+ * @csspart base - Deprecated. Use the `switch` part instead.
+ * @csspart switch - The component's outer wrapper.
  * @csspart control - The control that houses the switch's thumb.
  * @csspart thumb - The switch's thumb.
  * @csspart label - The switch's label.
@@ -28,6 +30,8 @@ import { WebAwesomeFormAssociatedElement } from '../../internal/webawesome-form-
 export default class WaSwitch extends WebAwesomeFormAssociatedElement {
     static shadowRootOptions: {
         delegatesFocus: boolean;
+        clonable?: boolean;
+        customElementRegistry?: CustomElementRegistry;
         mode: ShadowRootMode;
         serializable?: boolean;
         slotAssignment?: SlotAssignmentMode;
@@ -35,6 +39,7 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
     static css: import("lit").CSSResult[];
     static get validators(): import("../../internal/webawesome-form-associated-element.js").Validator<WebAwesomeFormAssociatedElement>[];
     private readonly hasSlotController;
+    private readonly localize;
     input: HTMLInputElement;
     title: string;
     /** The name of the switch, submitted as a name/value pair with form data. */
@@ -44,11 +49,14 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
     get value(): string | null;
     set value(val: string | null);
     /** The switch's size. */
-    size: 'small' | 'medium' | 'large';
+    size: 'xs' | 's' | 'm' | 'l' | 'xl' | 'small' | 'medium' | 'large';
+    handleSizeChange(): void;
     /** Disables the switch. */
     disabled: boolean;
-    /** Draws the switch in a checked state. */
-    checked: boolean;
+    _checked: boolean | null;
+    get checked(): boolean;
+    /** Draws the checkbox in a checked state. */
+    set checked(val: boolean);
     /** The default value of the form control. Primarily used for resetting the form control. */
     defaultChecked: boolean;
     /** Makes the switch a required field. */
@@ -56,15 +64,14 @@ export default class WaSwitch extends WebAwesomeFormAssociatedElement {
     /** The switch's hint. If you need to display HTML, use the `hint` slot instead. */
     hint: string;
     /**
-     * Used for SSR. If you slot in hint, make sure to add `with-hint` to your component to get it to properly render with SSR.
+     * Only required for SSR. Set to `true` if you're slotting in a `hint` element so the server-rendered markup
+     * includes the hint before the component hydrates on the client.
      */
     withHint: boolean;
-    firstUpdated(changedProperties: PropertyValues<typeof this>): void;
     private handleClick;
     private handleKeyDown;
     protected willUpdate(changedProperties: PropertyValues<this>): void;
     handleValueOrCheckedChange(): void;
-    handleDefaultCheckedChange(): void;
     handleStateChange(): void;
     handleDisabledChange(): void;
     /** Simulates a click on the switch. */

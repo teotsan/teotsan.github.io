@@ -3,7 +3,8 @@ import '../button/button.js';
 import '../tab-panel/tab-panel.js';
 import '../tab/tab.js';
 /**
- * @summary Tab groups organize content into a container that shows one section at a time.
+ * @summary Tab groups organize related content into a single container that displays one panel at a time, with tabs for
+ *  switching between them.
  * @documentation https://webawesome.com/docs/components/tab-group
  * @status stable
  * @since 2.0
@@ -19,7 +20,8 @@ import '../tab/tab.js';
  * @event {{ name: String }} wa-tab-show - Emitted when a tab is shown.
  * @event {{ name: String }} wa-tab-hide - Emitted when a tab is hidden.
  *
- * @csspart base - The component's base wrapper.
+ * @csspart base - Deprecated. Use the `tab-group` part instead.
+ * @csspart tab-group - The component's outer wrapper.
  * @csspart nav - The tab group's navigation container where tabs are slotted in.
  * @csspart tabs - The container that wraps the tabs.
  * @csspart body - The tab group's body where tab panels are slotted in.
@@ -31,6 +33,8 @@ import '../tab/tab.js';
  * @cssproperty --indicator-color - The color of the active tab indicator.
  * @cssproperty --track-color - The color of the indicator's track (the line that separates tabs from panels).
  * @cssproperty --track-width - The width of the indicator's track (the line that separates tabs from panels).
+ *
+ * @ssr - During SSR, `<wa-tab-group>` can't access its children to determine which tab is active. To render the correct panel, manually set the `active` attribute on the matching `<wa-tab>` and `<wa-tab-panel>`.
  */
 export default class WaTabGroup extends WebAwesomeElement {
     static css: import("lit").CSSResult;
@@ -42,7 +46,8 @@ export default class WaTabGroup extends WebAwesomeElement {
     private panels;
     private readonly localize;
     tabGroup: HTMLElement;
-    body: HTMLSlotElement;
+    /** Default slot for `<wa-tab-panel>` children (inside the `body` part container). */
+    defaultSlot: HTMLSlotElement;
     nav: HTMLElement;
     private hasScrollControls;
     /** Sets the active tab. */

@@ -38,8 +38,8 @@ wa-tree-item::part(label) {
 
 #social wa-icon {
     transition: transform 0.1s ease;
-    scale: 160%; 
-    margin-right: 20px; 
+    scale: 160%;
+    margin-right: 20px;
 }
 
 #social wa-icon:hover {

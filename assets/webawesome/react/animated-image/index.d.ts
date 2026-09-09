@@ -3,7 +3,8 @@ import { type EventName } from '@lit/react';
 import type { WaErrorEvent, WaLoadEvent } from '../../events/events.js';
 export type { WaErrorEvent, WaLoadEvent } from '../../events/events.js';
 /**
- * @summary A component for displaying animated GIFs and WEBPs that play and pause on interaction.
+ * @summary Animated images display GIFs and WEBPs with controls to play and pause them on demand. Use them when you
+ *  want motion but need to give users control over when it plays.
  * @documentation https://webawesome.com/docs/components/animated-image
  * @status stable
  * @since 2.0
@@ -20,6 +21,8 @@ export type { WaErrorEvent, WaLoadEvent } from '../../events/events.js';
  *
  * @cssproperty --control-box-size - The size of the icon box.
  * @cssproperty --icon-size - The size of the play/pause icons.
+ *
+ * @ssr - Due to browser limitations, `<wa-animated-image>` can't render during SSR. As a fallback you can use a `<video>` tag, but its controls won't work, and the gif or webp will always auto-play.
  */
 declare const reactWrapper: import("@lit/react").ReactWebComponent<Component, {
     onWaLoad: EventName<WaLoadEvent>;

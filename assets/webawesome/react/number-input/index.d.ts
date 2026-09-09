@@ -3,9 +3,10 @@ import { type EventName } from '@lit/react';
 import type { WaInvalidEvent } from '../../events/events.js';
 export type { WaInvalidEvent } from '../../events/events.js';
 /**
- * @summary Number inputs allow users to enter and edit numeric values with optional stepper buttons.
+ * @summary Number inputs let users enter and edit numeric values, with optional stepper buttons for incrementing and
+ *  decrementing. Use them for quantities, measurements, and other numeric form fields.
  * @documentation https://webawesome.com/docs/components/number-input
- * @status experimental
+ * @status stable
  * @since 3.2
  *
  * @dependency wa-icon
@@ -21,12 +22,15 @@ export type { WaInvalidEvent } from '../../events/events.js';
  * @event change - Emitted when an alteration to the control's value is committed by the user.
  * @event focus - Emitted when the control gains focus.
  * @event input - Emitted when the control receives input.
+ * @event beforeinput - Emitted before the value changes. Can be cancelled with `event.preventDefault()` to prevent the
+ *  value from changing.
  * @event wa-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
- * @csspart label - The label element.
- * @csspart form-control-label - Alias for the label element.
+ * @csspart form-control-label - The label.
+ * @csspart label - Deprecated. Use the `form-control-label` part instead.
  * @csspart hint - The hint element.
- * @csspart base - The wrapper containing the input and steppers.
+ * @csspart base - Deprecated. Use the `number-input` part instead.
+ * @csspart number-input - The component's outer wrapper.
  * @csspart input - The internal `<input>` control.
  * @csspart start - The container that wraps the `start` slot.
  * @csspart end - The container that wraps the `end` slot.

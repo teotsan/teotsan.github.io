@@ -1,7 +1,8 @@
 import WebAwesomeElement from '../../internal/webawesome-element.js';
 import '../icon/icon.js';
 /**
- * @summary Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.
+ * @summary Breadcrumbs display a trail of links that show users where they are in a site's hierarchy. They help users
+ *  understand the current location and navigate back to parent pages.
  * @documentation https://webawesome.com/docs/components/breadcrumb
  * @status stable
  * @since 2.0
@@ -11,7 +12,8 @@ import '../icon/icon.js';
  *
  * @dependency wa-icon
  *
- * @csspart base - The component's base wrapper.
+ * @csspart base - Deprecated. Use the `breadcrumb` part instead.
+ * @csspart breadcrumb - The component's outer wrapper.
  */
 export default class WaBreadcrumb extends WebAwesomeElement {
     static css: import("lit").CSSResult;

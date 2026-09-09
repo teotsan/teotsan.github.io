@@ -1,7 +1,9 @@
+import { type PropertyValues } from 'lit';
 import WebAwesomeElement from '../../internal/webawesome-element.js';
 import '../button/button.js';
 /**
- * @summary Drawers slide in from a container to expose additional options and information.
+ * @summary Drawers slide in from the edge of a container to expose additional options and information without
+ *  navigating away. Useful for navigation menus, filters, and secondary content.
  * @documentation https://webawesome.com/docs/components/drawer
  * @status stable
  * @since 2.0
@@ -35,8 +37,9 @@ import '../button/button.js';
  * @cssproperty --spacing - The amount of space around and between the drawer's content.
  * @cssproperty --size - The preferred size of the drawer. This will be applied to the drawer's width or height
  *   depending on its `placement`. Note that the drawer will shrink to accommodate smaller screens.
- * @cssproperty [--show-duration=200ms] - The animation duration when showing the drawer.
- * @cssproperty [--hide-duration=200ms] - The animation duration when hiding the drawer.
+ * @cssproperty [--backdrop-filter=none] - A filter to apply to the backdrop behind the drawer.
+ * @cssproperty [--show-duration=var(--wa-transition-normal)] - The animation duration when showing the drawer.
+ * @cssproperty [--hide-duration=var(--wa-transition-normal)] - The animation duration when hiding the drawer.
  *
  * @property modal - Exposes the internal modal utility that controls focus trapping. To temporarily disable focus
  *   trapping and allow third-party modals spawned from an active Shoelace modal, call `modal.activateExternal()` when
@@ -46,6 +49,7 @@ export default class WaDrawer extends WebAwesomeElement {
     static css: import("lit").CSSResult;
     private readonly localize;
     private readonly hasSlotController;
+    private readonly renderedWatcher;
     private originalTrigger;
     drawer: HTMLDialogElement;
     /** Indicates whether or not the drawer is open. Toggle this attribute to show and hide the drawer. */
@@ -61,7 +65,12 @@ export default class WaDrawer extends WebAwesomeElement {
     withoutHeader: boolean;
     /** When enabled, the drawer will be closed when the user clicks outside of it. */
     lightDismiss: boolean;
-    firstUpdated(): void;
+    /**
+     * Only required for SSR. Set to `true` if you're slotting in a `footer` element so the server-rendered markup
+     * includes the footer before the component hydrates on the client.
+     */
+    withFooter: boolean;
+    firstUpdated(changedProperties: PropertyValues<typeof this>): void;
     disconnectedCallback(): void;
     private requestClose;
     private addOpenListeners;
@@ -70,6 +79,11 @@ export default class WaDrawer extends WebAwesomeElement {
     private handleDialogClick;
     private handleDialogPointerDown;
     private handleDocumentKeyDown;
+    /**
+     * Suspends the modal when third-party CSS (e.g. cookie banner blockers) hides an open drawer, so the page isn't
+     * left scroll locked and inert. "open" stays true so the modal resumes if the drawer is rendered again.
+     */
+    private handleRenderedChange;
     handleOpenChange(): void;
     /** Shows the drawer. */
     private show;

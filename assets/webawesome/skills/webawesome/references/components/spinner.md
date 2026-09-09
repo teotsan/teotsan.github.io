@@ -1,21 +1,74 @@
 # Spinner
 
-**Full documentation:** https://webawesome.com/docs/components/spinner
+`<wa-spinner>`
 
+Stable [Feedback](https://webawesome.com/docs/components/?category=feedback) [Since 2.0](https://webawesome.com/docs/resources/changelog#wa_200)
 
-`<wa-spinner>` Since 2.0 stable
-
-Spinners are used to show the progress of an indeterminate operation.
+Spinners indicate that an operation is in progress when the duration is unknown. Use them for loading states where a determinate progress bar isn't practical.
 
 ```html
 <wa-spinner></wa-spinner>
 ```
 
+## API
+
+### Importing
+
+If you're using the autoloader or a hosted project, components load on demand — no manual import needed. To cherry-pick a component manually, use one of the following snippets.
+
+\*\*CDN\*\*
+
+Import this component directly from the CDN:
+
+```js
+import 'https://ka-f.webawesome.com/webawesome@3.12.0/components/spinner/spinner.js';
+```
+
+\*\*npm\*\*
+
+After installing Web Awesome via npm, import this component:
+
+```js
+import '@awesome.me/webawesome/dist/components/spinner/spinner.js';
+```
+
+\*\*Self-Hosted\*\*
+
+If you're self-hosting Web Awesome, import this component from your server:
+
+```js
+import './webawesome/dist/components/spinner/spinner.js';
+```
+
+\*\*React\*\*
+
+To import this component for React 18 or below, use the following code:
+
+```js
+import WaSpinner from '@awesome.me/webawesome/dist/react/spinner/index.js';
+```
+
+### CSS Custom Properties
+
+| Name | Description |
+| --- | --- |
+| \`--indicator-color\` | The color of the spinner's indicator. |
+| \`--speed\` | The time it takes for the spinner to complete one animation cycle. |
+| \`--track-color\` | The color of the track. |
+| \`--track-width\` | The width of the track. |
+
+### CSS Parts
+
+| Name | Description | CSS selector |
+| --- | --- | --- |
+| \`spinner\` | The component's outer wrapper. | \`::part(spinner)\` |
+| \`base\` | \`spinner\` Deprecated. Use the part instead. | \`::part(base)\` |
+
 ## Examples
 
 ### Size
 
-Spinners are sized based on the current font size. To change their size, set the `font-size` property on the spinner itself or on a parent element as shown below.
+Spinners are sized based on the current font size. To change the size, set `font-size` on the spinner itself or on a parent element.
 
 ```html
 <wa-spinner></wa-spinner>
@@ -25,69 +78,24 @@ Spinners are sized based on the current font size. To change their size, set the
 
 ### Track Width
 
-The width of the spinner's track can be changed by setting the `--track-width` custom property.
+Use the `--track-width` custom property to change the thickness of the spinner's track.
 
 ```html
 <wa-spinner style="font-size: 50px; --track-width: 10px;"></wa-spinner>
 ```
 
-### Color
+### Colors
 
-The spinner's colors can be changed by setting the `--indicator-color` and `--track-color` custom properties.
+Use the `--track-color` and `--indicator-color` custom properties to recolor the spinner.
 
 ```html
-<wa-spinner style="font-size: 3rem; --indicator-color: deeppink; --track-color: pink;"></wa-spinner>
+<wa-spinner style="font-size: 3rem; --indicator-color: var(--wa-color-success-fill-loud); --track-color: var(--wa-color-success-fill-quiet);"></wa-spinner>
 ```
 
-## Importing
+### Speed
 
-Autoloading components via [projects](https://webawesome.com/docs/#using-a-project) is the recommended way to import components. If you prefer to do it manually, use one of the following code snippets.
+Use the `--speed` custom property to set how long one full rotation takes.
 
-\*\*CDN\*\*
-
-Let your project code do the work! [Sign up for free](https://webawesome.com/signup) to use a project with your very own CDN — it's the fastest and easiest way to use Web Awesome.
-
-\*\*npm\*\*
-
-To manually import this component from NPM, use the following code.
-
-```js
-import '@awesome.me/webawesome/dist/components/spinner/spinner.js';
+```html
+<wa-spinner style="font-size: 3rem; --speed: 4s;"></wa-spinner>
 ```
-
-\*\*React\*\*
-
-To manually import this component from React, use the following code.
-
-```js
-import WaSpinner from '@awesome.me/webawesome/dist/react/spinner';
-```
-
-## Attributes & Properties
-
-Learn more about [attributes and properties](https://webawesome.com/docs/usage/#attributes-and-properties).
-
-| Name | Description | Reflects |
-| --- | --- | --- |
-| \`css\` | \`CSSResultGroup \\| undefined\` One or more CSSResultGroup to include in the component's shadow root. Host styles are automatically prepended. Type Default styles | | |
-
-## CSS custom properties
-
-Learn more about [CSS custom properties](https://webawesome.com/docs/customizing/#custom-properties).
-
-| Name | Description |
-| --- | --- |
-| \`--indicator-color\` | The color of the spinner's indicator. |
-| \`--speed\` | The time it takes for the spinner to complete one animation cycle. |
-| \`--track-color\` | The color of the track. |
-| \`--track-width\` | The width of the track. |
-
-## CSS parts
-
-Learn more about [CSS parts](https://webawesome.com/docs/customizing/#css-parts).
-
-| Name | Description | CSS selector |
-| --- | --- | --- |
-| \`base\` | The component's base wrapper. | \`::part(base)\` |
-
-**Need a hand?** Report a bug Ask for help

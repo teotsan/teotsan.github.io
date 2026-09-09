@@ -3,7 +3,8 @@ import { type EventName } from '@lit/react';
 import type { WaInvalidEvent } from '../../events/events.js';
 export type { WaInvalidEvent } from '../../events/events.js';
 /**
- * @summary Radio groups are used to group multiple [radios](/docs/components/radio) so they function as a single form control.
+ * @summary Radio groups wrap a set of radios so they function as a single form control with one shared value. They
+ *  handle keyboard navigation, labeling, and validation for the group as a whole.
  * @documentation https://webawesome.com/docs/components/radio-group
  * @status stable
  * @since 2.0
@@ -20,9 +21,8 @@ export type { WaInvalidEvent } from '../../events/events.js';
  * @event wa-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
  * @csspart form-control - The form control that wraps the label, input, and hint.
- * @csspart form-control-label - The label's wrapper.
- * @csspart form-control-input - The input's wrapper.
- * @csspart radios - The wrapper than surrounds radio items, styled as a flex container by default.
+ * @csspart form-control-label - The label.
+ * @csspart form-control-input - The element that wraps the grouped radios, styled as a flex container by default.
  * @csspart hint - The hint's wrapper.
  */
 declare const reactWrapper: import("@lit/react").ReactWebComponent<Component, {

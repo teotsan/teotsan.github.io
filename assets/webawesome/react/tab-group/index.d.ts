@@ -3,7 +3,8 @@ import { type EventName } from '@lit/react';
 import type { WaTabHideEvent, WaTabShowEvent } from '../../events/events.js';
 export type { WaTabHideEvent, WaTabShowEvent } from '../../events/events.js';
 /**
- * @summary Tab groups organize content into a container that shows one section at a time.
+ * @summary Tab groups organize related content into a single container that displays one panel at a time, with tabs for
+ *  switching between them.
  * @documentation https://webawesome.com/docs/components/tab-group
  * @status stable
  * @since 2.0
@@ -19,7 +20,8 @@ export type { WaTabHideEvent, WaTabShowEvent } from '../../events/events.js';
  * @event {{ name: String }} wa-tab-show - Emitted when a tab is shown.
  * @event {{ name: String }} wa-tab-hide - Emitted when a tab is hidden.
  *
- * @csspart base - The component's base wrapper.
+ * @csspart base - Deprecated. Use the `tab-group` part instead.
+ * @csspart tab-group - The component's outer wrapper.
  * @csspart nav - The tab group's navigation container where tabs are slotted in.
  * @csspart tabs - The container that wraps the tabs.
  * @csspart body - The tab group's body where tab panels are slotted in.
@@ -31,6 +33,8 @@ export type { WaTabHideEvent, WaTabShowEvent } from '../../events/events.js';
  * @cssproperty --indicator-color - The color of the active tab indicator.
  * @cssproperty --track-color - The color of the indicator's track (the line that separates tabs from panels).
  * @cssproperty --track-width - The width of the indicator's track (the line that separates tabs from panels).
+ *
+ * @ssr - During SSR, `<wa-tab-group>` can't access its children to determine which tab is active. To render the correct panel, manually set the `active` attribute on the matching `<wa-tab>` and `<wa-tab-panel>`.
  */
 declare const reactWrapper: import("@lit/react").ReactWebComponent<Component, {
     onWaTabShow: EventName<WaTabShowEvent>;

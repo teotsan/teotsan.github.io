@@ -1,6 +1,7 @@
 import Component from '../../components/breadcrumb/breadcrumb.js';
 /**
- * @summary Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.
+ * @summary Breadcrumbs display a trail of links that show users where they are in a site's hierarchy. They help users
+ *  understand the current location and navigate back to parent pages.
  * @documentation https://webawesome.com/docs/components/breadcrumb
  * @status stable
  * @since 2.0
@@ -10,7 +11,8 @@ import Component from '../../components/breadcrumb/breadcrumb.js';
  *
  * @dependency wa-icon
  *
- * @csspart base - The component's base wrapper.
+ * @csspart base - Deprecated. Use the `breadcrumb` part instead.
+ * @csspart breadcrumb - The component's outer wrapper.
  */
 declare const reactWrapper: import("@lit/react").ReactWebComponent<Component, {}>;
 export default reactWrapper;

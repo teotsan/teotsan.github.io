@@ -1,61 +1,75 @@
 # Breadcrumb Item
 
-**Full documentation:** https://webawesome.com/docs/components/breadcrumb-item
+`<wa-breadcrumb-item>`
 
+Stable [Navigation](https://webawesome.com/docs/components/?category=navigation) [Since 2.0](https://webawesome.com/docs/resources/changelog#wa_200)
 
-`<wa-breadcrumb-item>` Since 2.0 stable
+Breadcrumb items represent individual links inside a breadcrumb, typically one per level of the site hierarchy.
 
-Breadcrumb Items are used inside breadcrumbs to represent different links.
+This component must be used as a child of [`<wa-breadcrumb>`](https://webawesome.com/docs/components/breadcrumb). Please see the [Breadcrumb docs](https://webawesome.com/docs/components/breadcrumb) to see examples of this component in action.
 
-This component must be used as a child of `<wa-breadcrumb>`. Please see the [Breadcrumb docs](https://webawesome.com/docs/components/breadcrumb) to see examples of this component in action.
+```html
+<wa-breadcrumb>
+  <wa-breadcrumb-item><wa-icon slot="start" name="house"></wa-icon>Home</wa-breadcrumb-item>
+  <wa-breadcrumb-item data-anatomy-subject="true"><wa-icon slot="start" name="folder"></wa-icon>Projects</wa-breadcrumb-item>
+  <wa-breadcrumb-item>Overview</wa-breadcrumb-item>
+</wa-breadcrumb>
+```
 
-## Importing
+## API
 
-Autoloading components via [projects](https://webawesome.com/docs/#using-a-project) is the recommended way to import components. If you prefer to do it manually, use one of the following code snippets.
+### Importing
+
+If you're using the autoloader or a hosted project, components load on demand — no manual import needed. To cherry-pick a component manually, use one of the following snippets.
 
 \*\*CDN\*\*
 
-Let your project code do the work! [Sign up for free](https://webawesome.com/signup) to use a project with your very own CDN — it's the fastest and easiest way to use Web Awesome.
+Import this component directly from the CDN:
+
+```js
+import 'https://ka-f.webawesome.com/webawesome@3.12.0/components/breadcrumb-item/breadcrumb-item.js';
+```
 
 \*\*npm\*\*
 
-To manually import this component from NPM, use the following code.
+After installing Web Awesome via npm, import this component:
 
 ```js
 import '@awesome.me/webawesome/dist/components/breadcrumb-item/breadcrumb-item.js';
 ```
 
-\*\*React\*\*
+\*\*Self-Hosted\*\*
 
-To manually import this component from React, use the following code.
+If you're self-hosting Web Awesome, import this component from your server:
 
 ```js
-import WaBreadcrumbItem from '@awesome.me/webawesome/dist/react/breadcrumb-item';
+import './webawesome/dist/components/breadcrumb-item/breadcrumb-item.js';
 ```
 
-## Slots
+\*\*React\*\*
 
-Learn more about [using slots](https://webawesome.com/docs/usage/#slots).
+To import this component for React 18 or below, use the following code:
+
+```js
+import WaBreadcrumbItem from '@awesome.me/webawesome/dist/react/breadcrumb-item/index.js';
+```
+
+### Slots
 
 | Name | Description |
 | --- | --- |
 | (default) | The breadcrumb item's label. |
 | \`end\` | \`
 
-## Attributes & Properties
-
-Learn more about [attributes and properties](https://webawesome.com/docs/usage/#attributes-and-properties).
+### Attributes & Properties
 
 | Name | Description | Reflects |
 | --- | --- | --- |
-| \`css\` | \`CSSResultGroup \\| undefined\` One or more CSSResultGroup to include in the component's shadow root. Host styles are automatically prepended. Type Default styles | | |
-| \`href\` href | \`string \\| undefined\` Optional URL to direct the user to when the breadcrumb item is activated. When set, a link will be rendered internally. When unset, a button will be rendered instead. Type | | |
-| \`rel\` rel | \`rel\` The attribute to use on the link. Only used when href is set. Type string Default 'noreferrer noopener' | | |
-| \`target\` target | \`href\` Tells the browser where to open the link. Only used when is set. Type '\_blank' \\| '\_parent' \\| '\_self' \\| '\_top' \\| undefined | | |
+| \`href\` href | \`string \\| undefined\` Optional URL to direct the user to when the breadcrumb item is activated. When set, a link will be rendered internally. When unset, a button will be rendered instead. Type | |
+| \`rel\` rel | \`rel\` The attribute to use on the link. Only used when href is set. Type string Default 'noreferrer noopener' | |
+| \`target\` target | \`href\` Tells the browser where to open the link. Only used when is set. Type '\_blank' \\| '\_parent' \\| '\_self' \\| '\_top' \\| undefined | |
 
-## CSS parts
-
-Learn more about [CSS parts](https://webawesome.com/docs/customizing/#css-parts).
+### CSS Parts
 
 | Name | Description | CSS selector |
 | --- | --- | --- |
@@ -63,5 +77,3 @@ Learn more about [CSS parts](https://webawesome.com/docs/customizing/#css-parts)
 | \`label\` | The breadcrumb item's label. | \`::part(label)\` |
 | \`separator\` | The container that wraps the separator. | \`::part(separator)\` |
 | \`start\` | \`start\` The container that wraps the slot. | \`::part(start)\` |
-
-**Need a hand?** Report a bug Ask for help

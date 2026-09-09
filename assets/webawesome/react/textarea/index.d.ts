@@ -3,7 +3,7 @@ import { type EventName } from '@lit/react';
 import type { WaInvalidEvent } from '../../events/events.js';
 export type { WaInvalidEvent } from '../../events/events.js';
 /**
- * @summary Textareas collect data from the user and allow multiple lines of text.
+ * @summary Textareas collect multi-line text input from the user, with optional resizing and character counting.
  * @documentation https://webawesome.com/docs/components/textarea
  * @status stable
  * @since 2.0
@@ -17,11 +17,14 @@ export type { WaInvalidEvent } from '../../events/events.js';
  * @event input - Emitted when the control receives input.
  * @event wa-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  *
- * @csspart label - The label
- * @csspart form-control-input - The input's wrapper.
+ * @csspart form-control-label - The label.
+ * @csspart label - Deprecated. Use the `form-control-label` part instead.
  * @csspart hint - The hint's wrapper.
  * @csspart textarea - The internal `<textarea>` control.
- * @csspart base - The wrapper around the `<textarea>` control.
+ * @csspart base - Deprecated. Use the `textarea-wrapper` part instead.
+ * @csspart textarea-wrapper - The component's outer wrapper.
+ * @csspart textarea-adjuster - The invisible sizer that grows the control to fit its content when `resize` is `auto`.
+ * @csspart count - The character count element, rendered when the `with-count` attribute is present.
  *
  * @cssstate blank - The textarea is empty.
  */

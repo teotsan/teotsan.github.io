@@ -1,101 +1,131 @@
 # Button Group
 
-**Full documentation:** https://webawesome.com/docs/components/button-group
+`<wa-button-group>`
 
+Stable [Actions](https://webawesome.com/docs/components/?category=actions) [Since 2.0](https://webawesome.com/docs/resources/changelog#wa_200)
 
-`<wa-button-group>` Since 2.0 stable
-
-Button groups can be used to group related buttons into sections.
+Button groups combine related buttons into a single visual unit. Use them for toolbars, segmented controls, or any set of actions that belong together.
 
 ```html
 <wa-button-group label="Alignment">
-  <wa-button>Left</wa-button>
-  <wa-button>Center</wa-button>
-  <wa-button>Right</wa-button>
+  <wa-button appearance="filled">Left</wa-button>
+  <wa-button appearance="filled">Center</wa-button>
+  <wa-button appearance="filled">Right</wa-button>
 </wa-button-group>
 ```
+
+**Give every button group a `label`.**  
+It isn't shown on screen, but assistive devices announce it so people know what the grouped buttons control.
+
+## API
+
+### Importing
+
+If you're using the autoloader or a hosted project, components load on demand — no manual import needed. To cherry-pick a component manually, use one of the following snippets.
+
+\*\*CDN\*\*
+
+Import this component directly from the CDN:
+
+```js
+import 'https://ka-f.webawesome.com/webawesome@3.12.0/components/button-group/button-group.js';
+```
+
+\*\*npm\*\*
+
+After installing Web Awesome via npm, import this component:
+
+```js
+import '@awesome.me/webawesome/dist/components/button-group/button-group.js';
+```
+
+\*\*Self-Hosted\*\*
+
+If you're self-hosting Web Awesome, import this component from your server:
+
+```js
+import './webawesome/dist/components/button-group/button-group.js';
+```
+
+\*\*React\*\*
+
+To import this component for React 18 or below, use the following code:
+
+```js
+import WaButtonGroup from '@awesome.me/webawesome/dist/react/button-group/index.js';
+```
+
+### Slots
+
+| Name | Description |
+| --- | --- |
+| (default) | \`\` One or more elements to display in the button group. |
+
+### Attributes & Properties
+
+| Name | Description | Reflects |
+| --- | --- | --- |
+| \`label\` label | \`string\` A label to use for the button group. This won't be displayed on the screen, but it will be announced by assistive devices when interacting with the control and is strongly recommended. Type Default '' | |
+| \`orientation\` orientation | \`'horizontal' \\| 'vertical'\` The button group's orientation. Type Default 'horizontal' | |
+
+### CSS Parts
+
+| Name | Description | CSS selector |
+| --- | --- | --- |
+| \`base\` | Deprecated. Style the host element instead. | \`::part(base)\` |
 
 ## Examples
 
-### Vertical Button Groups
+### Orientation
 
-Set the `orientation` attribute to `vertical` to make a vertical button group.
+Set the `orientation` attribute to `vertical` to stack the buttons instead of placing them side by side.
 
 ```html
 <wa-button-group orientation="vertical" label="Options">
-  <wa-button>
-    <wa-icon slot="start" name="plus"></wa-icon>
-    New
-  </wa-button>
-  <wa-button>
-    <wa-icon slot="start" name="folder-open"></wa-icon>
-    Open
-  </wa-button>
-  <wa-button>
-    <wa-icon slot="start" name="save"></wa-icon>
-    Save
-  </wa-button>
-  <wa-button>
-    <wa-icon slot="start" name="print"></wa-icon>
-    Print
-  </wa-button>
+  <wa-button appearance="filled">Top</wa-button>
+  <wa-button appearance="filled">Middle</wa-button>
+  <wa-button appearance="filled">Bottom</wa-button>
 </wa-button-group>
 ```
 
-### Pill Buttons
+### Pill
 
-Pill buttons are supported through the button's `pill` attribute.
+Add the `pill` attribute to each button to round the group's outer edges.
 
 ```html
 <wa-button-group label="Alignment">
-  <wa-button size="small" pill>Left</wa-button>
-  <wa-button size="small" pill>Center</wa-button>
-  <wa-button size="small" pill>Right</wa-button>
-</wa-button-group>
-
-<br /><br />
-
-<wa-button-group label="Alignment">
-  <wa-button size="medium" pill>Left</wa-button>
-  <wa-button size="medium" pill>Center</wa-button>
-  <wa-button size="medium" pill>Right</wa-button>
-</wa-button-group>
-
-<br /><br />
-
-<wa-button-group label="Alignment">
-  <wa-button size="large" pill>Left</wa-button>
-  <wa-button size="large" pill>Center</wa-button>
-  <wa-button size="large" pill>Right</wa-button>
+  <wa-button appearance="filled" size="m" pill>Left</wa-button>
+  <wa-button appearance="filled" size="m" pill>Center</wa-button>
+  <wa-button appearance="filled" size="m" pill>Right</wa-button>
 </wa-button-group>
 ```
 
-### Dropdowns in Button Groups
+### Dropdowns
 
-Dropdowns can be placed into button groups.
+Place a [dropdown](https://webawesome.com/docs/components/dropdown) anywhere in the group to attach a menu of related actions.
 
 ```html
-<wa-button-group label="Example Button Group">
-  <wa-button>Button</wa-button>
+<wa-button-group label="Options">
+  <wa-button appearance="filled">Edit</wa-button>
   <wa-dropdown>
-    <wa-button slot="trigger" with-caret>Dropdown</wa-button>
-    <wa-dropdown-item>Item 1</wa-dropdown-item>
-    <wa-dropdown-item>Item 2</wa-dropdown-item>
-    <wa-dropdown-item>Item 3</wa-dropdown-item>
+    <wa-button appearance="filled" slot="trigger" with-caret>More</wa-button>
+    <wa-dropdown-item>Cut</wa-dropdown-item>
+    <wa-dropdown-item>Copy</wa-dropdown-item>
+    <wa-dropdown-item>Paste</wa-dropdown-item>
   </wa-dropdown>
-  <wa-button>Button</wa-button>
+  <wa-button appearance="filled">Delete</wa-button>
 </wa-button-group>
 ```
 
 ### Split Buttons
 
-Create a split button using a button and a dropdown. Use a [visually hidden](https://webawesome.com/docs/utilities/visually-hidden) label to ensure the dropdown is accessible to users with assistive devices.
+Pair a primary button with a dropdown to make a split button. Give the dropdown trigger an accessible label so people using assistive devices know what it opens.
 
 ```html
-<wa-button-group label="Example Button Group">
-  <wa-button variant="brand">Save</wa-button>
+<wa-button-group label="Save">
+  <wa-button appearance="filled" variant="brand">Save</wa-button>
   <wa-dropdown placement="bottom-end">
-    <wa-button slot="trigger" variant="brand">
+    <wa-button appearance="filled" slot="trigger" variant="brand">
       <wa-icon name="chevron-down" label="More options"></wa-icon>
     </wa-button>
     <wa-dropdown-item>Save</wa-dropdown-item>
@@ -105,49 +135,59 @@ Create a split button using a button and a dropdown. Use a [visually hidden](htt
 </wa-button-group>
 ```
 
-### Tooltips in Button Groups
+### Tooltips
 
-Buttons can be wrapped in tooltips to provide more detail when the user interacts with them.
+Pair each button with a [tooltip](https://webawesome.com/docs/components/tooltip) to explain what it does on hover and focus.
 
 ```html
 <wa-button-group label="Alignment">
-  <wa-button id="button-left">Left</wa-button>
-  <wa-button id="button-center">Center</wa-button>
-  <wa-button id="button-right">Right</wa-button>
+  <wa-button appearance="filled" id="button-left">Left</wa-button>
+  <wa-button appearance="filled" id="button-center">Center</wa-button>
+  <wa-button appearance="filled" id="button-right">Right</wa-button>
 </wa-button-group>
 
-<wa-tooltip for="button-left">I'm on the left</wa-tooltip>
-<wa-tooltip for="button-center">I'm in the middle</wa-tooltip>
-<wa-tooltip for="button-right">I'm on the right</wa-tooltip>
+<wa-tooltip for="button-left">Align left</wa-tooltip>
+<wa-tooltip for="button-center">Align center</wa-tooltip>
+<wa-tooltip for="button-right">Align right</wa-tooltip>
 ```
 
-### Toolbar Example
+### Toolbars
 
-Create interactive toolbars with button groups.
+Combine several button groups into a toolbar of related action sets. Use icon-only buttons with `label` for compact controls, and tooltips to name each one.
 
 ```html
-<div class="button-group-toolbar">
+<div class="button-group-toolbar wa-cluster">
   <wa-button-group label="History">
-    <wa-button id="undo-button"><wa-icon name="undo" variant="solid" label="Undo"></wa-icon></wa-button>
-    <wa-button id="redo-button"><wa-icon name="redo" variant="solid" label="Redo"></wa-icon></wa-button>
+    <wa-button appearance="filled" id="undo-button"
+      ><wa-icon name="undo" variant="solid" label="Undo"></wa-icon
+    ></wa-button>
+    <wa-button appearance="filled" id="redo-button"
+      ><wa-icon name="redo" variant="solid" label="Redo"></wa-icon
+    ></wa-button>
   </wa-button-group>
 
   <wa-button-group label="Formatting">
-    <wa-button id="button-bold"><wa-icon name="bold" variant="solid" label="Bold"></wa-icon></wa-button>
-    <wa-button id="button-italic"><wa-icon name="italic" variant="solid" label="Italic"></wa-icon></wa-button>
-    <wa-button id="button-underline"><wa-icon name="underline" variant="solid" label="Underline"></wa-icon></wa-button>
+    <wa-button appearance="filled" id="button-bold"
+      ><wa-icon name="bold" variant="solid" label="Bold"></wa-icon
+    ></wa-button>
+    <wa-button appearance="filled" id="button-italic"
+      ><wa-icon name="italic" variant="solid" label="Italic"></wa-icon
+    ></wa-button>
+    <wa-button appearance="filled" id="button-underline"
+      ><wa-icon name="underline" variant="solid" label="Underline"></wa-icon
+    ></wa-button>
   </wa-button-group>
 
   <wa-button-group label="Alignment">
-    <wa-button id="button-align-left">
-      <wa-icon name="align-left" variant="solid" label="Align Left"></wa-icon>
-    </wa-button>
-    <wa-button id="button-align-center">
-      <wa-icon name="align-center" variant="solid" label="Align Center"></wa-icon>
-    </wa-button>
-    <wa-button id="button-align-right">
-      <wa-icon name="align-right" variant="solid" label="Align Right"></wa-icon>
-    </wa-button>
+    <wa-button appearance="filled" id="button-align-left"
+      ><wa-icon name="align-left" variant="solid" label="Align left"></wa-icon
+    ></wa-button>
+    <wa-button appearance="filled" id="button-align-center"
+      ><wa-icon name="align-center" variant="solid" label="Align center"></wa-icon
+    ></wa-button>
+    <wa-button appearance="filled" id="button-align-right"
+      ><wa-icon name="align-right" variant="solid" label="Align right"></wa-icon
+    ></wa-button>
   </wa-button-group>
 </div>
 
@@ -156,66 +196,19 @@ Create interactive toolbars with button groups.
 <wa-tooltip for="button-bold">Bold</wa-tooltip>
 <wa-tooltip for="button-italic">Italic</wa-tooltip>
 <wa-tooltip for="button-underline">Underline</wa-tooltip>
-
-<wa-tooltip for="button-align-left">Align Left</wa-tooltip>
-<wa-tooltip for="button-align-center">Align Center</wa-tooltip>
-<wa-tooltip for="button-align-right">Align Right</wa-tooltip>
-
-<style>
-  .button-group-toolbar wa-button-group:not(:last-of-type) {
-    margin-right: var(--wa-space-xs);
-  }
-</style>
+<wa-tooltip for="button-align-left">Align left</wa-tooltip>
+<wa-tooltip for="button-align-center">Align center</wa-tooltip>
+<wa-tooltip for="button-align-right">Align right</wa-tooltip>
 ```
 
-## Importing
+### Native Buttons
 
-Autoloading components via [projects](https://webawesome.com/docs/#using-a-project) is the recommended way to import components. If you prefer to do it manually, use one of the following code snippets.
+Button groups also work with native `<button>` elements when [Native Styles](https://webawesome.com/docs/utilities/native) are included.
 
-\*\*CDN\*\*
-
-Let your project code do the work! [Sign up for free](https://webawesome.com/signup) to use a project with your very own CDN — it's the fastest and easiest way to use Web Awesome.
-
-\*\*npm\*\*
-
-To manually import this component from NPM, use the following code.
-
-```js
-import '@awesome.me/webawesome/dist/components/button-group/button-group.js';
+```html
+<wa-button-group label="Alignment">
+  <button class="wa-filled">Left</button>
+  <button class="wa-filled">Center</button>
+  <button class="wa-filled">Right</button>
+</wa-button-group>
 ```
-
-\*\*React\*\*
-
-To manually import this component from React, use the following code.
-
-```js
-import WaButtonGroup from '@awesome.me/webawesome/dist/react/button-group';
-```
-
-## Slots
-
-Learn more about [using slots](https://webawesome.com/docs/usage/#slots).
-
-| Name | Description |
-| --- | --- |
-| (default) | \`\` One or more elements to display in the button group. |
-
-## Attributes & Properties
-
-Learn more about [attributes and properties](https://webawesome.com/docs/usage/#attributes-and-properties).
-
-| Name | Description | Reflects |
-| --- | --- | --- |
-| \`css\` | \`CSSResultGroup \\| undefined\` One or more CSSResultGroup to include in the component's shadow root. Host styles are automatically prepended. Type Default \[styles\] | | |
-| \`label\` label | \`string\` A label to use for the button group. This won't be displayed on the screen, but it will be announced by assistive devices when interacting with the control and is strongly recommended. Type Default '' | | |
-| \`orientation\` orientation | \`'horizontal' \\| 'vertical'\` The button group's orientation. Type Default 'horizontal' | | |
-
-## CSS parts
-
-Learn more about [CSS parts](https://webawesome.com/docs/customizing/#css-parts).
-
-| Name | Description | CSS selector |
-| --- | --- | --- |
-| \`base\` | The component's base wrapper. | \`::part(base)\` |
-
-**Need a hand?** Report a bug Ask for help

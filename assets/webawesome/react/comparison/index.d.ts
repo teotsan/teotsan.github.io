@@ -1,6 +1,7 @@
 import Component from '../../components/comparison/comparison.js';
 /**
- * @summary Compare visual differences between similar content with a sliding panel.
+ * @summary Comparisons show the visual differences between two pieces of similar content using a draggable divider. Use
+ *  them for before/after images, design revisions, or side-by-side previews.
  * @documentation https://webawesome.com/docs/components/comparison
  * @status stable
  * @since 2.0
@@ -13,7 +14,8 @@ import Component from '../../components/comparison/comparison.js';
  *
  * @event change - Emitted when the position changes.
  *
- * @csspart base - The container that wraps the before and after content.
+ * @csspart base - Deprecated. Use the `comparison` part instead.
+ * @csspart comparison - The component's outer wrapper.
  * @csspart before - The container that wraps the before content.
  * @csspart after - The container that wraps the after content.
  * @csspart divider - The divider that separates the before and after content.

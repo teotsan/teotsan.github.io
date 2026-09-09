@@ -1,26 +1,81 @@
 # Format Date
 
-**Full documentation:** https://webawesome.com/docs/components/format-date
+`<wa-format-date>`
 
+Stable [Helpers](https://webawesome.com/docs/components/?category=helpers) [Since 2.0](https://webawesome.com/docs/resources/changelog#wa_200)
 
-`<wa-format-date>` Since 2.0 stable
+Formats a date or time for display using the specified locale and options. Powered by the Intl.DateTimeFormat API for consistent, localized output.
 
-Formats a date/time using the specified locale and options.
+```html
+<!-- Web Awesome 3 release date 🎉 -->
+<wa-format-date date="2025-12-02T00:00:00-05:00"></wa-format-date>
+```
 
 Localization is handled by the browser's [`Intl.DateTimeFormat` API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat). No language packs are required.
 
-```html
-<!-- Web Awesome 2 release date 🎉 -->
-<wa-format-date date="2020-07-15T09:17:00-04:00"></wa-format-date>
-```
-
 The `date` attribute determines the date/time to use when formatting. It must be a string that [`Date.parse()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse) can interpret or a [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object set via JavaScript. If omitted, the current date/time will be assumed.
 
-When using strings, avoid ambiguous dates such as `03/04/2020` which can be interpreted as March 4 or April 3 depending on the user's browser and locale. Instead, always use a valid [ISO 8601 date time string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse#Date_Time_String_Format) to ensure the date will be parsed properly by all clients.
+**Always use ISO 8601 date strings.**  
+Ambiguous formats like `03/04/2020` can be read as March 4 or April 3 depending on the user's browser and locale. A valid [ISO 8601 date time string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse#Date_Time_String_Format) parses the same for every client.
+
+## API
+
+### Importing
+
+If you're using the autoloader or a hosted project, components load on demand — no manual import needed. To cherry-pick a component manually, use one of the following snippets.
+
+\*\*CDN\*\*
+
+Import this component directly from the CDN:
+
+```js
+import 'https://ka-f.webawesome.com/webawesome@3.12.0/components/format-date/format-date.js';
+```
+
+\*\*npm\*\*
+
+After installing Web Awesome via npm, import this component:
+
+```js
+import '@awesome.me/webawesome/dist/components/format-date/format-date.js';
+```
+
+\*\*Self-Hosted\*\*
+
+If you're self-hosting Web Awesome, import this component from your server:
+
+```js
+import './webawesome/dist/components/format-date/format-date.js';
+```
+
+\*\*React\*\*
+
+To import this component for React 18 or below, use the following code:
+
+```js
+import WaFormatDate from '@awesome.me/webawesome/dist/react/format-date/index.js';
+```
+
+### Attributes & Properties
+
+| Name | Description | Reflects |
+| --- | --- | --- |
+| \`date\` date | \`date.toISOString()\` The date/time to format. If not set, the current date and time will be used. When passing a string, it's strongly recommended to use the ISO 8601 format to ensure timezones are handled correctly. To convert a date to this format in JavaScript, use . Type Date \\| string Default new Date() | |
+| \`day\` day | \`'numeric' \\| '2-digit'\` The format for displaying the day. Type | |
+| \`era\` era | \`'narrow' \\| 'short' \\| 'long'\` The format for displaying the era. Type | |
+| \`hour\` hour | \`'numeric' \\| '2-digit'\` The format for displaying the hour. Type | |
+| \`hourFormat\` hour-format | \`'auto' \\| '12' \\| '24'\` The format for displaying the hour. Type Default 'auto' | |
+| \`minute\` minute | \`'numeric' \\| '2-digit'\` The format for displaying the minute. Type | |
+| \`month\` month | \`'numeric' \\| '2-digit' \\| 'narrow' \\| 'short' \\| 'long'\` The format for displaying the month. Type | |
+| \`second\` second | \`'numeric' \\| '2-digit'\` The format for displaying the second. Type | |
+| \`timeZone\` time-zone | \`string\` The time zone to express the time in. Type | |
+| \`timeZoneName\` time-zone-name | \`'short' \\| 'long'\` The format for displaying the time. Type | |
+| \`weekday\` weekday | \`'narrow' \\| 'short' \\| 'long'\` The format for displaying the weekday. Type | |
+| \`year\` year | \`'numeric' \\| '2-digit'\` The format for displaying the year. Type | |
 
 ## Examples
 
-### Date & Time Formatting
+### Date & Time Format
 
 Formatting options are based on those found in the [`Intl.DateTimeFormat` API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat). When formatting options are provided, the date/time will be formatted according to those values. When no formatting options are provided, a localized, numeric date will be displayed instead.
 
@@ -44,7 +99,7 @@ Formatting options are based on those found in the [`Intl.DateTimeFormat` API](h
 <wa-format-date></wa-format-date>
 ```
 
-### Hour Formatting
+### Hour Format
 
 By default, the browser will determine whether to use 12-hour or 24-hour time. To force one or the other, set the `hour-format` attribute to `12` or `24`.
 
@@ -62,49 +117,3 @@ English: <wa-format-date lang="en"></wa-format-date><br />
 French: <wa-format-date lang="fr"></wa-format-date><br />
 Russian: <wa-format-date lang="ru"></wa-format-date>
 ```
-
-## Importing
-
-Autoloading components via [projects](https://webawesome.com/docs/#using-a-project) is the recommended way to import components. If you prefer to do it manually, use one of the following code snippets.
-
-\*\*CDN\*\*
-
-Let your project code do the work! [Sign up for free](https://webawesome.com/signup) to use a project with your very own CDN — it's the fastest and easiest way to use Web Awesome.
-
-\*\*npm\*\*
-
-To manually import this component from NPM, use the following code.
-
-```js
-import '@awesome.me/webawesome/dist/components/format-date/format-date.js';
-```
-
-\*\*React\*\*
-
-To manually import this component from React, use the following code.
-
-```js
-import WaFormatDate from '@awesome.me/webawesome/dist/react/format-date';
-```
-
-## Attributes & Properties
-
-Learn more about [attributes and properties](https://webawesome.com/docs/usage/#attributes-and-properties).
-
-| Name | Description | Reflects |
-| --- | --- | --- |
-| \`css\` | \`CSSResultGroup \\| undefined\` One or more CSSResultGroup to include in the component's shadow root. Host styles are automatically prepended. Type | | |
-| \`date\` date | \`date.toISOString()\` The date/time to format. If not set, the current date and time will be used. When passing a string, it's strongly recommended to use the ISO 8601 format to ensure timezones are handled correctly. To convert a date to this format in JavaScript, use . Type Date \\| string Default new Date() | | |
-| \`day\` day | \`'numeric' \\| '2-digit'\` The format for displaying the day. Type | | |
-| \`era\` era | \`'narrow' \\| 'short' \\| 'long'\` The format for displaying the era. Type | | |
-| \`hour\` hour | \`'numeric' \\| '2-digit'\` The format for displaying the hour. Type | | |
-| \`hourFormat\` hour-format | \`'auto' \\| '12' \\| '24'\` The format for displaying the hour. Type Default 'auto' | | |
-| \`minute\` minute | \`'numeric' \\| '2-digit'\` The format for displaying the minute. Type | | |
-| \`month\` month | \`'numeric' \\| '2-digit' \\| 'narrow' \\| 'short' \\| 'long'\` The format for displaying the month. Type | | |
-| \`second\` second | \`'numeric' \\| '2-digit'\` The format for displaying the second. Type | | |
-| \`timeZone\` time-zone | \`string\` The time zone to express the time in. Type | | |
-| \`timeZoneName\` time-zone-name | \`'short' \\| 'long'\` The format for displaying the time. Type | | |
-| \`weekday\` weekday | \`'narrow' \\| 'short' \\| 'long'\` The format for displaying the weekday. Type | | |
-| \`year\` year | \`'numeric' \\| '2-digit'\` The format for displaying the year. Type | | |
-
-**Need a hand?** Report a bug Ask for help

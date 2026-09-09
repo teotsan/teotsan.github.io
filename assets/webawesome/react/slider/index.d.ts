@@ -5,8 +5,8 @@ export type { WaInvalidEvent } from '../../events/events.js';
 /**
  * <wa-slider>
  *
- * @summary Ranges allow the user to select a single value within a given range using a slider.
- * @documentation https://webawesome.com/docs/components/range
+ * @summary Sliders let users choose a numeric value within a defined range by dragging a thumb along a track.
+ * @documentation https://webawesome.com/docs/components/slider
  * @status stable
  * @since 2.0
  *
@@ -36,7 +36,7 @@ export type { WaInvalidEvent } from '../../events/events.js';
  * @csspart thumb-max - The max value thumb in a range slider.
  * @csspart tooltip - The tooltip, a `<wa-tooltip>` element.
  * @csspart tooltip__tooltip - The tooltip's `tooltip` part.
- * @csspart tooltip__content - The tooltip's `content` part.
+ * @csspart tooltip__body - The tooltip's `body` part.
  * @csspart tooltip__arrow - The tooltip's `arrow` part.
  *
  * @cssstate disabled - Applied when the slider is disabled.
